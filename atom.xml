@@ -5,9 +5,9 @@
   <subtitle>甜点森林</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://bysouffle.github.io/"/>
-  <updated>2020-08-02T03:43:58.084Z</updated>
-  <id>https://bysouffle.github.io/</id>
+  <link href="http://bysouffle.github.io/"/>
+  <updated>2020-10-24T08:12:41.976Z</updated>
+  <id>http://bysouffle.github.io/</id>
   
   <author>
     <name>bySouffle</name>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>数组与指针</title>
+    <link href="http://bysouffle.github.io/2020/10/24/array-point/"/>
+    <id>http://bysouffle.github.io/2020/10/24/array-point/</id>
+    <published>2020-10-24T08:12:43.284Z</published>
+    <updated>2020-10-24T08:12:41.976Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;数据与指针&quot;&gt;&lt;a href=&quot;#数据与指针&quot; class=&quot;headerlink&quot; title=&quot;数据与指针&quot;&gt;&lt;/a&gt;数据与指针&lt;/h2&gt;&lt;h3 id=&quot;一-概念&quot;&gt;&lt;a href=&quot;#一-概念&quot; class=&quot;headerlink&quot; title=&quot;一. 
+        
+      
+    
+    </summary>
+    
+    
+      <category term="C/C++" scheme="http://bySouffle.github.io/categories/C-C/"/>
+    
+    
+      <category term="C/C++" scheme="http://bySouffle.github.io/tags/C-C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
-    <link href="https://bysouffle.github.io/2020/08/02/hello-world/"/>
-    <id>https://bysouffle.github.io/2020/08/02/hello-world/</id>
-    <published>2020-08-02T04:34:23.475Z</published>
-    <updated>2020-08-02T03:43:58.084Z</updated>
+    <link href="http://bysouffle.github.io/2020/10/24/hello-world/"/>
+    <id>http://bysouffle.github.io/2020/10/24/hello-world/</id>
+    <published>2020-10-24T07:12:18.401Z</published>
+    <updated>2020-08-02T03:43:58.000Z</updated>
     
     <summary type="html">
     
@@ -41,10 +68,10 @@
   
   <entry>
     <title>test</title>
-    <link href="https://bysouffle.github.io/2020/08/02/test/"/>
-    <id>https://bysouffle.github.io/2020/08/02/test/</id>
+    <link href="http://bysouffle.github.io/2020/08/02/test/"/>
+    <id>http://bysouffle.github.io/2020/08/02/test/</id>
     <published>2020-08-01T18:03:05.000Z</published>
-    <updated>2020-08-01T18:33:17.337Z</updated>
+    <updated>2020-08-01T18:33:17.000Z</updated>
     
     <summary type="html">
     
@@ -64,12 +91,12 @@
     </summary>
     
     
-      <category term="测试" scheme="https://bysouffle.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
+      <category term="测试" scheme="http://bySouffle.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
     
     
-      <category term="Python" scheme="https://bysouffle.github.io/tags/Python/"/>
+      <category term="Python" scheme="http://bySouffle.github.io/tags/Python/"/>
     
-      <category term="测试" scheme="https://bysouffle.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
+      <category term="测试" scheme="http://bySouffle.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
