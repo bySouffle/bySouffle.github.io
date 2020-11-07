@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>QT学习1</title>
+      <link href="/2020/11/08/qt-1/"/>
+      <url>/2020/11/08/qt-1/</url>
+      
+        <content type="html"><![CDATA[<h2 id="QT"><a href="#QT" class="headerlink" title="QT"></a>QT</h2><h3 id="一-各种部件"><a href="#一-各种部件" class="headerlink" title="一.  各种部件"></a>一.  各种部件</h3><ul><li><strong>QWidget</strong> 现理解的作用就是包起其他的部件，如QVboxLayout</li></ul><hr><pre><code>// 创建一个QWidegetQWidget w;  //  创建实例对象QWidget *w1 = new QWidget;  //  创建指针(推荐)</code></pre><hr><ul><li><strong>QVBoxLayout(QHboxLayout)</strong> 存放各种按钮框框啥的吧</li></ul><hr><pre><code>//  创建一个QVBoxLayoutQVBoxLayout box;  //  创建实例对象QVBoxLayout *box = new QVBoxLayout;  //  创建指针</code></pre><hr><ul><li><strong>QPushButton</strong> 按钮</li></ul><hr><pre><code>QPushButton quit("quit");//  1.将按钮放入 BoxLayoutbox-&gt;addWidget(&amp;hello);QObject::connect(        &amp;quit,                  // 按下buttom发出信号的对象        &amp;QPushButton::clicked,  // 点击信号          &amp;a,                     // 接受信号的对象        &amp;QApplication::quit     // 槽 实现功能 退出        );//  2.BoxLayout 放入 QWidgetw-&gt;setLayout(&amp;box);//  3.显示w-&gt;show();</code></pre><hr><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> QT </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> QT </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>数组与指针</title>
       <link href="/2020/10/24/array-point/"/>
       <url>/2020/10/24/array-point/</url>
