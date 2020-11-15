@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bysouffle.github.io/"/>
-  <updated>2020-11-07T16:13:32.984Z</updated>
+  <updated>2020-11-15T08:19:28.572Z</updated>
   <id>http://bysouffle.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>QT学习1</title>
-    <link href="http://bysouffle.github.io/2020/11/08/qt-1/"/>
-    <id>http://bysouffle.github.io/2020/11/08/qt-1/</id>
-    <published>2020-11-07T16:13:34.642Z</published>
-    <updated>2020-11-07T16:13:32.984Z</updated>
+    <title>QT基础</title>
+    <link href="http://bysouffle.github.io/2020/11/15/qt-1-ji-chu/"/>
+    <id>http://bysouffle.github.io/2020/11/15/qt-1-ji-chu/</id>
+    <published>2020-11-15T08:19:30.544Z</published>
+    <updated>2020-11-15T08:19:28.572Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;QT基础&quot;&gt;&lt;a href=&quot;#QT基础&quot; class=&quot;headerlink&quot; title=&quot;QT基础&quot;&gt;&lt;/a&gt;QT基础&lt;/h1&gt;&lt;h2 id=&quot;QWidget&quot;&gt;&lt;a href=&quot;#QWidget&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/categories/QT/"/>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/tags/QT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QT窗口部件</title>
+    <link href="http://bysouffle.github.io/2020/11/15/qt-1/"/>
+    <id>http://bysouffle.github.io/2020/11/15/qt-1/</id>
+    <published>2020-11-15T07:28:50.827Z</published>
+    <updated>2020-11-14T16:31:27.878Z</updated>
     
     <summary type="html">
     
