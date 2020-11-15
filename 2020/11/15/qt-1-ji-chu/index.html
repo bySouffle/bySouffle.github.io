@@ -558,7 +558,7 @@ edit.setCompleter(&amp;completer);</code></pre>
 edit.setParent(&amp;w);</code></pre>
 <hr>
 <h2 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h2><ul>
-<li><p>用<strong>QVBoxLayout**</strong>、QHBoxLayout<strong>、</strong>QGridLayout** 创建一个Layout</p>
+<li><p>用<strong>QVBoxLayout</strong>、<strong>QHBoxLayout</strong>、<strong>QGridLayout</strong> 创建一个Layout</p>
 </li>
 <li><p>将按钮啥的放到 部件 里 layout.addWidget()</p>
 </li>
@@ -615,9 +615,12 @@ QGridLayout *m_login_glayout = new QGridLayout;
 QHBoxLayout *m_login_bt_l = new QHBoxLayout;
 
 m_l_username-&gt;setText("用户名:");
-m_login_glayout-&gt;addWidget(m_l_username,1,1);</code></pre>
-<p>//    m_login_glayout-&gt;setSpacing(10);<br>    m_e_username-&gt;setMaxLength(8);</p>
-<pre><code>m_login_glayout-&gt;addWidget(m_e_username,1,2);
+m_login_glayout-&gt;addWidget(m_l_username,1,1);
+
+//  m_login_glayout-&gt;setSpacing(10);
+m_e_username-&gt;setMaxLength(8);
+
+m_login_glayout-&gt;addWidget(m_e_username,1,2);
 
 m_l_passwd-&gt;setText("密码:");
 m_login_glayout-&gt;addWidget(m_l_passwd,2,1);
@@ -639,11 +642,13 @@ m_login_bt-&gt;setText("登录");
 m_login_bt_l-&gt;addStretch(1);
 m_login_bt_l-&gt;addWidget(m_login_bt);
 
-m_login_glayout-&gt;addLayout(m_login_bt_l,3,2);</code></pre>
-<p>//    m_login_glayout-&gt;addWidget(m_login_bt,3,2);</p>
-<pre><code>w-&gt;setLayout(m_login_glayout);</code></pre>
-<p>//    w-&gt;setLayout()</p>
-<pre><code>w-&gt;show();</code></pre>
+m_login_glayout-&gt;addLayout(m_login_bt_l,3,2);
+//    m_login_glayout-&gt;addWidget(m_login_bt,3,2);
+
+w-&gt;setLayout(m_login_glayout);
+//    w-&gt;setLayout()
+
+w-&gt;show();</code></pre>
 <hr>
 <script>
         document.querySelectorAll('.github-emoji')
