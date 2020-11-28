@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="linux C线程, 甜点森林">
+    <meta name="keywords" content="QT窗口部件, 甜点森林">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>linux C线程 | 甜点森林</title>
+    <title>QT窗口部件 | 甜点森林</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">linux C线程</h1>
+                    <h1 class="description center-align post-title">QT窗口部件</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/C-Linux/">
-                                <span class="chip bg-color">C/Linux</span>
+                            <a href="/tags/QT/">
+                                <span class="chip bg-color">QT</span>
                             </a>
                         
                     </div>
@@ -443,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/C-Linux/" class="post-category">
-                                C/Linux
+                            <a href="/categories/QT/" class="post-category">
+                                QT
                             </a>
                         
                     </div>
@@ -456,21 +456,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-28
+                    2020-11-07
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-23
+                    2020-11-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    324
+                    207
                 </div>
                 
 
@@ -492,95 +492,44 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><hr>
-<pre><code>#include &lt;pthread.h&gt;</code></pre>
-<hr>
-<h2 id="创建一个线程"><a href="#创建一个线程" class="headerlink" title="创建一个线程"></a>创建一个线程</h2><hr>
-<pre><code>extern int pthreacreated_create (pthread_t *__restrict __newthread,
-           const pthread_attr_t *__restrict __attr,
-           void *(*__start_routine) (void *),
-           void *__restrict __arg) __THROWNL __nonnull ((1, 3));</code></pre>
-<hr>
-<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ul>
-<li>线程ID的指针</li>
+                <h2 id="QT"><a href="#QT" class="headerlink" title="QT"></a>QT</h2><h3 id="一-各种部件"><a href="#一-各种部件" class="headerlink" title="一.  各种部件"></a>一.  各种部件</h3><ul>
+<li><strong>QWidget</strong> 现理解的作用就是包起其他的部件，如QVboxLayout</li>
 </ul>
 <hr>
-<pre><code>pthread_t *__restrict __newthread,</code></pre>
+<pre><code>// 创建一个QWideget
+QWidget w;  //  创建实例对象
+QWidget *w1 = new QWidget;  //  创建指针(推荐)</code></pre>
 <hr>
-<pre><code>//  创建方式
-pthread_t work_thread;
-pthread_t wait_thread;</code></pre>
 <ul>
-<li>线程属性设置</li>
+<li><strong>QVBoxLayout(QHboxLayout)</strong> 存放各种按钮框框啥的吧</li>
 </ul>
 <hr>
-<pre><code>const pthread_attr_t *__restrict __attr,</code></pre>
+<pre><code>//  创建一个QVBoxLayout
+QVBoxLayout box;  //  创建实例对象
+QVBoxLayout *box = new QVBoxLayout;  //  创建指针</code></pre>
 <hr>
-<pre><code>//  创建属性
-pthread_attr_t attr;       //线程属性设置
-pthread_attr_init(&amp;attr);
-//将属性设置为joinable, 使主线程等待该线程执行完后，再结束主线程
-pthread_attr_setdetachstate(&amp;attr,PTHREAD_CREATE_JOINABLE);   </code></pre>
 <ul>
-<li>执行的线程函数  &amp;  参数</li>
+<li><strong>QPushButton</strong> 按钮</li>
 </ul>
 <hr>
-<pre><code>//  函数参数
-void *__restrict __arg) __THROWNL __nonnull ((1, 3));</code></pre>
-<hr>
-<pre><code>//  创建传递线程参数的结构体
-struct thread_para
-{
-    int sockfd;
-    char *info;
-};
+<pre><code>QPushButton quit("quit");
 
-thread_para thread_p;</code></pre>
-<hr>
-<pre><code>//  函数指针
-void *(*__start_routine) (void *),</code></pre>
-<hr>
-<hr>
-<pre><code>//  创建线程函数
-void *work_recv_thread(void *param)
-{
-    //  将传入的结构体强转类型
-    thread_para *t_para = (thread_para* )param;
-    ... ...
-}</code></pre>
-<hr>
-<ul>
-<li>创建线程</li>
-</ul>
-<hr>
-<pre><code>extern int pthread_create (pthread_t *__restrict __newthread,
-           const pthread_attr_t *__restrict __attr,
-           void *(*__start_routine) (void *),
-           void *__restrict __arg) __THROWNL __nonnull ((1, 3));</code></pre>
-<hr>
-<hr>
-<pre><code>创建一个线程
-pthread_create(
-    &amp;work_thread,
-    NULL,
-    work_recv_thread,
-    (void *)&amp;thread_p);</code></pre>
-<hr>
-<ul>
-<li>阻塞式(等待子线程运行完再结束主线程)</li>
-</ul>
-<hr>
-<pre><code>extern int pthread_join (pthread_t __th, void **__thread_return);
+//  1.将按钮放入 BoxLayout
+box-&gt;addWidget(&amp;hello);
 
-pthread_t __th  //  线程ID
-void **__thread_return  //  返回的线程状态信息，类型为void*
+QObject::connect(
+        &amp;quit,                  // 按下buttom发出信号的对象
+        &amp;QPushButton::clicked,  // 点击信号  
+        &amp;a,                     // 接受信号的对象
+        &amp;QApplication::quit     // 槽 实现功能 退出
+        );
 
-//ex:
-void *status;
-pthread_join(
-    wait_thread,
-    &amp;status
-);</code></pre>
+//  2.BoxLayout 放入 QWidget
+w-&gt;setLayout(&amp;box);
+
+//  3.显示
+w-&gt;show();</code></pre>
+<hr>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -624,7 +573,7 @@ pthread_join(
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bySouffle.github.io/2020/11/28/c-thread/">http://bySouffle.github.io/2020/11/28/c-thread/</a>
+                    <a href="http://bySouffle.github.io/2020/11/07/qt-1/">http://bySouffle.github.io/2020/11/07/qt-1/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -662,8 +611,8 @@ pthread_join(
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/C-Linux/">
-                                    <span class="chip bg-color">C/Linux</span>
+                                <a href="/tags/QT/">
+                                    <span class="chip bg-color">QT</span>
                                 </a>
                             
                         </div>
@@ -835,12 +784,12 @@ pthread_join(
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/28/qt-3-shi-jian/">
+                <a href="/2020/11/15/qt-1-ji-chu/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/3.jpg" class="responsive-img" alt="QT控件">
+                        <img src="/medias/banner/1.jpg" class="responsive-img" alt="QT基础">
                         
-                        <span class="card-title">QT控件</span>
+                        <span class="card-title">QT基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -851,7 +800,7 @@ pthread_join(
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-15
                         </span>
                         <span class="publish-author">
                             
@@ -883,30 +832,30 @@ pthread_join(
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/28/qt-6-painterpro/">
+                <a href="/2020/10/24/array-point/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/6.jpg" class="responsive-img" alt="QPainter Pro">
+                        <img src="/medias/banner/1.jpg" class="responsive-img" alt="数组与指针">
                         
-                        <span class="card-title">QPainter Pro</span>
+                        <span class="card-title">数组与指针</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            QT学习
+                            基础知识
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/QT/" class="post-category">
-                                    QT
+                            <a href="/categories/C-C/" class="post-category">
+                                    C/C++
                                 </a>
                             
                             
@@ -916,8 +865,8 @@ pthread_join(
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/QT/">
-                        <span class="chip bg-color">QT</span>
+                    <a href="/tags/C-C/">
+                        <span class="chip bg-color">C/C++</span>
                     </a>
                     
                 </div>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="QT控件, 甜点森林">
+    <meta name="keywords" content="QT绘画, 甜点森林">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>QT控件 | 甜点森林</title>
+    <title>QT绘画 | 甜点森林</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">QT控件</h1>
+                    <h1 class="description center-align post-title">QT绘画</h1>
                 </div>
             </div>
         </div>
@@ -456,28 +456,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-28
+                    2020-11-24
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-23
+                    2020-11-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    429
+                    688
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -492,98 +492,221 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="控件"><a href="#控件" class="headerlink" title="控件"></a>控件</h1><h2 id="QLabel-addWidget"><a href="#QLabel-addWidget" class="headerlink" title="QLabel   (addWidget)"></a>QLabel   (addWidget)</h2><ul>
-<li>是一个部件，添加到布局里</li>
-<li>标签的文字支持 html 语言</li>
-</ul>
-<h2 id="QComboBox-（addWidget）"><a href="#QComboBox-（addWidget）" class="headerlink" title="QComboBox    （addWidget）"></a>QComboBox    （addWidget）</h2><ul>
-<li>下拉框</li>
-</ul>
-<hr>
-<pre><code>QComboBox *combo;
-lay-&gt;addWidget(combo = new QComboBox());</code></pre>
-<hr>
-<ul>
-<li>添加选项</li>
-</ul>
-<hr>
-<pre><code>combo-&gt;addItem("select 1");
-combo-&gt;addItem("select 2");</code></pre>
-<hr>
-<ul>
-<li>可编辑选项</li>
-</ul>
-<hr>
-<pre><code>combo-&gt;setEditable(true);  // 可编辑的下拉框</code></pre>
-<hr>
-<ul>
-<li>根据输入选择下拉选项</li>
-</ul>
-<hr>
-<pre><code>combo-&gt;setCompleter(new QCompleter(combo-&gt;model()));</code></pre>
-<hr>
-<h2 id="QTextEdit-addWidget"><a href="#QTextEdit-addWidget" class="headerlink" title="QTextEdit     (addWidget)"></a>QTextEdit     (addWidget)</h2><ul>
-<li>文本编辑框 可以给定 Html 语言格式，如&lt;table&gt;&lt;/table&gt;&lt;tr&gt;&lt;/tr&gt;&lt;imag src=../xxx.png&gt;&lt;\imag&gt;…</li>
-</ul>
-<hr>
-<pre><code>lay-&gt;addWidget(edit = new QTextEdit);
-    edit-&gt;setText("&lt;table border=1&gt;&lt;tr&gt;&lt;th&gt;head1&lt;/th&gt;&lt;/tr&gt;"
-                "&lt;tr&gt;&lt;td&gt;value1&lt;/td&gt;value2&lt;td&gt;zzz&lt;/td&gt;&lt;/1tr&gt;"
-                "&lt;tr&gt;&lt;td&gt;value3&lt;/td&gt;value4&lt;td&gt;zzz&lt;/td&gt;&lt;/tr&gt;"
-                "&lt;/table&gt;""&lt;br&gt;""&lt;imag src=../aaa.png&gt;&lt;/imag&gt;"
-                );        //Html 表格插数据</code></pre>
-<hr>
-<ul>
-<li>检测文本路径转为图片显示</li>
-</ul>
-<hr>
-<pre><code>edit-&gt;toPlainText();</code></pre>
-<hr>
-<ul>
-<li>侧边移动滑条</li>
-</ul>
-<hr>
-<pre><code>edit-&gt;setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-edit-&gt;setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);</code></pre>
-<hr>
-<h2 id="QGroupBox-addWidget"><a href="#QGroupBox-addWidget" class="headerlink" title="QGroupBox    (addWidget)"></a>QGroupBox    (addWidget)</h2><ul>
-<li>左上角名字将部件圈起来的框框</li>
-</ul>
-<hr>
-<pre><code>lay-&gt;addWidget(groupbox = new QGroupBox("Some Items"));</code></pre>
-<hr>
-<p>*再在框框内添加layout, 再在layout内添加部件</p>
-<hr>
-<pre><code>groupbox-&gt;setLayout(hboxlay = new QHBoxLayout);
-hboxlay-&gt;addWidget(new QLabel("aaaa"));
-hboxlay-&gt;addWidget(new QLabel("aaaa"));</code></pre>
-<hr>
-<h2 id="QSlider-（滑杆）"><a href="#QSlider-（滑杆）" class="headerlink" title="QSlider  （滑杆）"></a>QSlider  （滑杆）</h2><ul>
-<li>布局 默认竖直放置, 下面为水平放置</li>
-</ul>
-<hr>
-<pre><code>lay-&gt;addWidget(slider = new QSlider(Qt::Horizontal));</code></pre>
-<hr>
-<ul>
-<li>设置上下限</li>
-</ul>
-<hr>
-<pre><code>slider-&gt;setMaximum(100);
-slider-&gt;setMinimum(0);</code></pre>
-<hr>
-<h2 id="QSpinBox-（数字调节）"><a href="#QSpinBox-（数字调节）" class="headerlink" title="QSpinBox     （数字调节）"></a>QSpinBox     （数字调节）</h2><hr>
-<pre><code>lay-&gt;addWidget(spinBox = new QSpinBox); </code></pre>
-<hr>
-<h3 id="将-QSlider-与-QSpinBox-结合"><a href="#将-QSlider-与-QSpinBox-结合" class="headerlink" title="将 QSlider 与 QSpinBox 结合"></a>将 QSlider 与 QSpinBox 结合</h3><hr>
-<pre><code>connect(slider,
-        &amp;QSlider::valueChanged,
-        spinBox,
-        &amp;QSpinBox::setValue);
+                <h1 id="QT绘画-QPainter"><a href="#QT绘画-QPainter" class="headerlink" title="QT绘画 QPainter"></a>QT绘画 QPainter</h1><ul>
+<li><p>重载 paintEvent</p>
+<ol>
+<li><p>准备画笔</p>
+<pre><code> QPainter p(this);
 
-connect(spinBox,
-        SIGNAL(valueChanged(int)),
-        slider,
-        SLOT(setValue(int)));</code></pre>
+     p.setPen(QPen(Qt::red, 2, Qt::DashLine));
+     p.setBrush(Qt::yellow); //  背景颜色
+     p.setFont(QFont("aaa", 40, 700, true)); //italic</code></pre>
+</li>
+<li><p>绘制形状</p>
+<pre><code> p.drawLine(QPoint(0,0), QPoint(100,100));
+ p.drawRect(QRect(40,60,100,50));
+ p.drawText(QPoint(300, 50), "Hellow");
+ p.drawPixmap(QPoint(40,40), QPixmap("../aaa.png"));</code></pre>
+</li>
+<li><p>图形变换</p>
+<pre><code> {
+     QTransform transfrom;       //  可将复杂的功能组合
+     transfrom.rotate(30);
+     transfrom.scale(.5,.5);     //  缩放
+     p.setTransform(transfrom);  //  旋转
+ }
+
+ p.translate(100,100);   //  变换原点坐标单独</code></pre>
+</li>
+<li><p>消除锯齿</p>
+<pre><code> p.setRenderHint(QPainter::Antialiasing);    //  消除锯齿    </code></pre>
+</li>
+<li><p>*可以先画好图片放入pixmap中，再在窗口绘制</p>
+<pre><code> QPixmap pixmap(size());
+ QPainter p(&amp;pixmap);
+
+ QTransform transform;
+ transform.translate(50,50);
+ transform.rotate(30);
+ p.setTransform(transform);
+
+ p.drawxxx    ... ... 
+ P.end();
+
+ p.begin(this);
+ p.drawPixmap(0,0,pixmap);</code></pre>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="示例1（画板实现）"><a href="#示例1（画板实现）" class="headerlink" title="示例1（画板实现）"></a>示例1（画板实现）</h2><hr>
+<pre><code>// MyWidget.h 
+
+#include&lt;QVector&gt;
+#include &lt;QDebug&gt;
+    class MyWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit MyWidget(QWidget *parent = nullptr);
+
+    MyButton * button;
+
+
+    void paintEvent(QPaintEvent *);
+    void mousePressEvent(QMouseEvent *);
+    void mouseReleaseEvent(QMouseEvent *);
+    void mouseMoveEvent(QMouseEvent *);
+
+    QVector&lt;QPoint&gt; _pos;
+
+    QVector&lt; QVector&lt;QPoint&gt; &gt; _lines;
+
+signals:
+
+};</code></pre>
+<hr>
+<hr>
+<pre><code>//MyWidget.cpp
+
+void MyWidget::paintEvent(QPaintEvent *event)
+{
+    QPainter p(this);
+    for(int i = 0; i &lt; _lines.size();++i)
+    {
+        const QVector&lt;QPoint&gt; &amp; line = _lines.at(i);
+        {
+            for(int j = 0; j &lt; line.size()-1; ++j)
+            {
+                p.drawLine(line.at(j),line.at(j+1));
+            }
+        }
+    }
+}
+
+void MyWidget::mouseMoveEvent(QMouseEvent *event)
+{
+
+    if(_lines.size() == 0)
+    {
+        QVector&lt;QPoint&gt; line;
+        _lines.append(line);
+    }
+
+    QVector&lt;QPoint&gt;&amp; lastline = _lines.last();
+    lastline.append(event-&gt;pos());
+//    _pos.append(event-&gt;pos());
+    update();
+}
+
+void MyWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    QVector&lt;QPoint&gt;&amp; lastline = _lines.last();
+    lastline.append(event-&gt;pos());
+
+//    _pos.append(event-&gt;pos());
+}
+
+void MyWidget::mousePressEvent(QMouseEvent *event)
+{
+    QVector&lt;QPoint&gt; line;   //  一条线
+    _lines.append(line);     // 一条线放入很多条线 的向量里
+
+
+    QVector&lt;QPoint&gt;&amp; lastline = _lines.last();
+    lastline.append(event-&gt;pos());
+
+//    _pos.append(event-&gt;pos());
+}</code></pre>
+<hr>
+<h2 id="示例2-按钮变色"><a href="#示例2-按钮变色" class="headerlink" title="示例2 按钮变色"></a>示例2 按钮变色</h2><hr>
+<pre><code>//  MyButton.h
+#ifndef MYBUTTON_H
+#define MYBUTTON_H
+
+#include &lt;QWidget&gt;
+#include &lt;QMouseEvent&gt;
+
+class MyButton : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit MyButton(QWidget *parent = nullptr);
+
+    MyButton(const QString &amp;text, QWidget* parent = 0);
+    QRect _rect;    //  按钮大小
+    QString _text;  //  按钮显示文字
+
+    bool _pressed;  //  按压判断
+
+    void paintEvent(QPaintEvent *event);
+
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+
+
+signals:
+
+    void clicked();
+
+};
+
+#endif // MYBUTTON_H</code></pre>
+<hr>
+<hr>
+<pre><code>//  MuButton.cpp
+
+#include "MyButton.h"
+#include &lt;QPainter&gt;
+
+MyButton::MyButton(QWidget *parent) :
+    QWidget(parent), _rect(0,0,100,30)
+{
+    _pressed = false;   //  初始时 按压设置为否
+    this-&gt;setGeometry(_rect);
+
+}
+
+MyButton::MyButton(const QString &amp;text, QWidget *parent):
+                        QWidget(parent), _text(text), _rect(0,0,100,30)
+{
+    _pressed = false;
+    this-&gt;setGeometry(_rect);
+}
+
+void MyButton::paintEvent(QPaintEvent *event)
+{
+    QPainter p(this);
+    if( _pressed == true )
+    {
+        p.setBrush(Qt::yellow); //  设置背景为黄色
+    }
+    else
+        p.setBrush(Qt::darkGray);   //  设置背景为灰色
+    p.drawRect(_rect);  //  画按钮框
+    p.drawText(_rect, _text, QTextOption(Qt::AlignCenter)); //  画文字
+}
+
+void MyButton::mousePressEvent(QMouseEvent *event)
+{
+    //  按下时 按钮状态为 true 更新颜色
+    _pressed = true;
+    update();
+}
+
+void MyButton::mouseReleaseEvent(QMouseEvent *event)
+{
+    //  释放时 按钮状态为 false 更新颜色
+    _pressed = false;
+    update();
+
+    //  在设定框框的容器范围内才发送信号
+    if(_rect.contains(event-&gt;pos()))
+    {
+    emit clicked();
+    }
+//    emit clicked();
+}</code></pre>
 <hr>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -628,7 +751,7 @@ connect(spinBox,
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bySouffle.github.io/2020/11/28/qt-2-kong-jian/">http://bySouffle.github.io/2020/11/28/qt-2-kong-jian/</a>
+                    <a href="http://bySouffle.github.io/2020/11/24/qt-4-painter/">http://bySouffle.github.io/2020/11/24/qt-4-painter/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -835,17 +958,16 @@ connect(spinBox,
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/28/qt-2-kong-jian/">
+                <a href="/2020/11/25/qt-5-xin-hao-cao/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/2.jpg" class="responsive-img" alt="QT控件">
+                        <img src="/medias/banner/5.jpg" class="responsive-img" alt="信号槽">
                         
-                        <span class="card-title">QT控件</span>
+                        <span class="card-title">信号槽</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -855,9 +977,9 @@ connect(spinBox,
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -870,7 +992,6 @@ connect(spinBox,
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -889,12 +1010,12 @@ connect(spinBox,
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/28/qt-4-painter/">
+                <a href="/2020/11/24/qt-3-shi-jian/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/4.jpg" class="responsive-img" alt="QT绘画">
+                        <img src="/medias/banner/3.jpg" class="responsive-img" alt="QT控件">
                         
-                        <span class="card-title">QT绘画</span>
+                        <span class="card-title">QT控件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -905,7 +1026,7 @@ connect(spinBox,
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
                             </span>
                         <span class="publish-author">
                             

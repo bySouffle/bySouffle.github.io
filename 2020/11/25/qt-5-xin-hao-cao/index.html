@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="QT控件, 甜点森林">
+    <meta name="keywords" content="信号槽, 甜点森林">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>QT控件 | 甜点森林</title>
+    <title>信号槽 | 甜点森林</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">QT控件</h1>
+                    <h1 class="description center-align post-title">信号槽</h1>
                 </div>
             </div>
         </div>
@@ -456,28 +456,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-28
+                    2020-11-25
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-24
+                    2020-11-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    488
+                    318
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -492,139 +492,28 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h2 id="处理流程"><a href="#处理流程" class="headerlink" title="处理流程"></a>处理流程</h2><ul>
-<li><p>QApplication 先得到 ==&gt; 具体应该处理的窗口：event() ==&gt; event() 根据消息的类型来调用具体的虚函数 </p>
-</li>
-<li><p>重载具体的虚函数来实现对消息的相应</p>
-</li>
-<li><p>重载 event 函数来处理或截取消息</p>
-</li>
+                <h1 id="信号槽"><a href="#信号槽" class="headerlink" title="信号槽"></a>信号槽</h1><ul>
+<li>信号的定义必须在 <strong>signals</strong> 保留字下，并且不需要实现</li>
+<li>槽的定义在 <strong>slots</strong> 保留字下，需要实现 </li>
+<li>信号和槽通过 QObject::connect 函数连接</li>
+<li>当信号被触发 槽函数被调用</li>
 </ul>
-<h2 id="具体流程"><a href="#具体流程" class="headerlink" title="具体流程"></a>具体流程</h2><ol>
-<li>在处理的类里重载事件</li>
-</ol>
 <hr>
-<pre><code>class MyWidget : public QWidget
-{
-    Q_OBJECT
-public:
-    explicit MyWidget(QWidget *parent = nullptr);
-
-// *************** event **********************
-//    bool event(QEvent *);
-    void mousePressEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
-    void keyPressEvent(QKeyEvent *event);
-
-    void closeEvent(QCloseEvent *event);
-    void hideEvent(QHideEvent *event);
-    void paintEvent(QPaintEvent *event);
-    void resizeEvent(QResizeEvent *event);
-
-// *********************************************
-
-    QPushButton *button;
-    QPushButton *button1;
-
-    QVBoxLayout *vlay;
-
-    QTextEdit * edit;
-
-    void sl_buttonChecked();
-
-signals:
-
-};</code></pre>
-<hr>
-<ol start="2">
-<li><p>截断消息</p>
-<p> 重载event函数来处理或者截取消息</p>
-</li>
-</ol>
-<hr>
-<pre><code>bool MyWidget::event(QEvent *ev)
-{
-    if(ev-&gt;type() == QEvent::MouseButtonPress)
-    {
-        qDebug()&lt;&lt;"111";
-        return QWidget::event(ev);
-    }
-}</code></pre>
-<hr>
-<ol start="3">
-<li><p>重写 事件</p>
-<p> 重载具体的虚函数来实现对消息的相应</p>
-</li>
-</ol>
-<hr>
-<pre><code>void MyWidget::keyPressEvent(QKeyEvent *event)
-{
-    event-&gt;modifiers() ;
-    int key = event-&gt;key();
-    qDebug()&lt;&lt;key;
-    char keys = key;
-    qDebug()&lt;&lt;keys;
-
-}
-
-void MyWidget::mousePressEvent(QMouseEvent *event)
-{
-    QPoint pt = event-&gt;pos();
-    qDebug()&lt;&lt;pt;
-    if(event-&gt;button() == Qt::LeftButton)
-    {
-        qDebug()&lt;&lt;"left";
-    }
-
-    if(event-&gt;modifiers()== Qt::ShiftModifier)  //  修饰符shift
-    {
-        qDebug()&lt;&lt;"shift press";
-    }
-    if(event-&gt;modifiers() == Qt::ControlModifier)
-    {
-        qDebug()&lt;&lt;"control";
-        return ;
-    }
-}   </code></pre>
-<hr>
-<ol start="4">
-<li><p>注意事项</p>
 <ul>
-<li><p>鼠标事件在窗口上处理不包含按钮等部件  鼠标按下才会有反应</p>
-<p>  解决方法: </p>
-<pre><code>  this-&gt;setMouseTracking(true);</code></pre>
-</li>
+<li>信号和槽是QT的扩展 所以实现信号和槽的类必须是 <strong>QObject</strong> 的子类</li>
+<li>实现信号和槽的类 必须以宏 <strong>Q_OBJECT</strong> 开始</li>
+<li>连接信号和槽，要用到 <strong>SINGAL</strong> 和 <strong>SLOT</strong> 宏 转换函数为字符串</li>
+<li>一个信号可以连接<strong>多个</strong>槽 槽函数调用顺序是不确定的</li>
+<li>多个信号可以同时连接一个槽</li>
+<li>信号可以连接信号，形成信号传导</li>
+<li>信号和槽的<strong>参数</strong>应该一样多 而且<strong>类型</strong>必须相同</li>
+<li>信号和槽都可以重载</li>
+<li>信号和槽都可以有默认参数</li>
+<li>槽函数可以像普通函数一样被调用</li>
+<li>在槽函数中调用 <strong>sender</strong> 可以获得信号调用者</li>
 </ul>
-</li>
-</ol>
-<pre><code>* 键盘事件在主窗口上处理, 不会处理按键等
-
-    解决方法: 设置 焦点 or 将按键设置默认
-
-        button-&gt;setFocus(); //  设置焦点
-        button-&gt;setDefault(true);   //  设为默认</code></pre>
-<h2 id="事件过滤"><a href="#事件过滤" class="headerlink" title="事件过滤"></a>事件过滤</h2><ol>
-<li><p>给 <strong>Widget</strong> 安装一个消息过滤器， 经过 <strong>Widget</strong> 的消息都要先经过 <strong>eventfilter</strong> </p>
-<pre><code> button-&gt;installEventFilter(this);</code></pre>
-</li>
-<li><p>重写 eventFilter 函数</p>
-<pre><code> bool eventFilter(QObject *, QEvent *);
-
- bool MyWidget::eventFilter(QObject *o, QEvent *e)
- {
-     if(((QPushButton *)_button == o ) &amp;&amp;
-             (e-&gt;type() == QEvent::MouseButtonRelease ||
-             e-&gt;type() == QEvent::MouseButtonDblClick||
-             e-&gt;type() == QEvent::MouseButtonPress))
-     {
-         return true;
-     }
-     return QWidget::eventFilter(o,e);
- }</code></pre>
-</li>
-</ol>
-<script>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="一个类-QObject"><a href="#一个类-QObject" class="headerlink" title="一个类 QObject"></a>一个类 QObject</h3><h3 id="三个宏-Q-OBJECT-SIGNAL-SLOT"><a href="#三个宏-Q-OBJECT-SIGNAL-SLOT" class="headerlink" title="三个宏 Q_OBJECT SIGNAL SLOT"></a>三个宏 Q_OBJECT SIGNAL SLOT</h3><h3 id="三个保留字-signals-slots-emit"><a href="#三个保留字-signals-slots-emit" class="headerlink" title="三个保留字 signals slots emit"></a>三个保留字 signals slots emit</h3><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -667,7 +556,7 @@ void MyWidget::mousePressEvent(QMouseEvent *event)
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bySouffle.github.io/2020/11/28/qt-3-shi-jian/">http://bySouffle.github.io/2020/11/28/qt-3-shi-jian/</a>
+                    <a href="http://bySouffle.github.io/2020/11/25/qt-5-xin-hao-cao/">http://bySouffle.github.io/2020/11/25/qt-5-xin-hao-cao/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -878,12 +767,12 @@ void MyWidget::mousePressEvent(QMouseEvent *event)
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/28/qt-5-xin-hao-cao/">
+                <a href="/2020/11/28/qt-6-painterpro/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/5.jpg" class="responsive-img" alt="信号槽">
+                        <img src="/medias/banner/6.jpg" class="responsive-img" alt="QPainter Pro">
                         
-                        <span class="card-title">信号槽</span>
+                        <span class="card-title">QPainter Pro</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -926,30 +815,30 @@ void MyWidget::mousePressEvent(QMouseEvent *event)
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/28/c-thread/">
+                <a href="/2020/11/24/qt-4-painter/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/3.jpg" class="responsive-img" alt="linux C线程">
+                        <img src="/medias/banner/4.jpg" class="responsive-img" alt="QT绘画">
                         
-                        <span class="card-title">linux C线程</span>
+                        <span class="card-title">QT绘画</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            基础知识
+                            QT学习
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/C-Linux/" class="post-category">
-                                    C/Linux
+                            <a href="/categories/QT/" class="post-category">
+                                    QT
                                 </a>
                             
                             
@@ -959,8 +848,8 @@ void MyWidget::mousePressEvent(QMouseEvent *event)
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C-Linux/">
-                        <span class="chip bg-color">C/Linux</span>
+                    <a href="/tags/QT/">
+                        <span class="chip bg-color">QT</span>
                     </a>
                     
                 </div>
