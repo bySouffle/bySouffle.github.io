@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bysouffle.github.io/"/>
-  <updated>2020-11-15T08:23:43.929Z</updated>
+  <updated>2020-11-23T07:27:07.000Z</updated>
   <id>http://bysouffle.github.io/</id>
   
   <author>
@@ -15,6 +15,172 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>QT控件</title>
+    <link href="http://bysouffle.github.io/2020/11/28/qt-2-kong-jian/"/>
+    <id>http://bysouffle.github.io/2020/11/28/qt-2-kong-jian/</id>
+    <published>2020-11-28T09:59:50.685Z</published>
+    <updated>2020-11-23T07:27:07.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;控件&quot;&gt;&lt;a href=&quot;#控件&quot; class=&quot;headerlink&quot; title=&quot;控件&quot;&gt;&lt;/a&gt;控件&lt;/h1&gt;&lt;h2 id=&quot;QLabel-addWidget&quot;&gt;&lt;a href=&quot;#QLabel-addWidget&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/categories/QT/"/>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/tags/QT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QT绘画</title>
+    <link href="http://bysouffle.github.io/2020/11/28/qt-4-painter/"/>
+    <id>http://bysouffle.github.io/2020/11/28/qt-4-painter/</id>
+    <published>2020-11-28T09:59:50.685Z</published>
+    <updated>2020-11-25T00:41:46.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;QT绘画-QPainter&quot;&gt;&lt;a href=&quot;#QT绘画-QPainter&quot; class=&quot;headerlink&quot; title=&quot;QT绘画 QPainter&quot;&gt;&lt;/a&gt;QT绘画 QPainter&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;重载
+        
+      
+    
+    </summary>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/categories/QT/"/>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/tags/QT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>信号槽</title>
+    <link href="http://bysouffle.github.io/2020/11/28/qt-5-xin-hao-cao/"/>
+    <id>http://bysouffle.github.io/2020/11/28/qt-5-xin-hao-cao/</id>
+    <published>2020-11-28T09:59:50.685Z</published>
+    <updated>2020-11-25T01:45:45.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;信号槽&quot;&gt;&lt;a href=&quot;#信号槽&quot; class=&quot;headerlink&quot; title=&quot;信号槽&quot;&gt;&lt;/a&gt;信号槽&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;信号的定义必须在 &lt;strong&gt;signals&lt;/strong&gt;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/categories/QT/"/>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/tags/QT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QT控件</title>
+    <link href="http://bysouffle.github.io/2020/11/28/qt-3-shi-jian/"/>
+    <id>http://bysouffle.github.io/2020/11/28/qt-3-shi-jian/</id>
+    <published>2020-11-28T09:59:50.679Z</published>
+    <updated>2020-11-24T02:11:41.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;事件&quot;&gt;&lt;a href=&quot;#事件&quot; class=&quot;headerlink&quot; title=&quot;事件&quot;&gt;&lt;/a&gt;事件&lt;/h1&gt;&lt;h2 id=&quot;处理流程&quot;&gt;&lt;a href=&quot;#处理流程&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/categories/QT/"/>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/tags/QT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux C线程</title>
+    <link href="http://bysouffle.github.io/2020/11/28/c-thread/"/>
+    <id>http://bysouffle.github.io/2020/11/28/c-thread/</id>
+    <published>2020-11-28T09:59:50.409Z</published>
+    <updated>2020-11-23T01:31:22.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;线程&quot;&gt;&lt;a href=&quot;#线程&quot; class=&quot;headerlink&quot; title=&quot;线程&quot;&gt;&lt;/a&gt;线程&lt;/h1&gt;&lt;h2 id=&quot;头文件&quot;&gt;&lt;a href=&quot;#头文件&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="C/Linux" scheme="http://bySouffle.github.io/categories/C-Linux/"/>
+    
+    
+      <category term="C/Linux" scheme="http://bySouffle.github.io/tags/C-Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QPainter Pro</title>
+    <link href="http://bysouffle.github.io/2020/11/28/qt-6-painterpro/"/>
+    <id>http://bysouffle.github.io/2020/11/28/qt-6-painterpro/</id>
+    <published>2020-11-28T09:59:25.201Z</published>
+    <updated>2020-11-28T09:58:59.872Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;QPainter&quot;&gt;&lt;a href=&quot;#QPainter&quot; class=&quot;headerlink&quot; title=&quot;QPainter&quot;&gt;&lt;/a&gt;QPainter&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;三要素&lt;ul&gt;
+&lt;li&gt;画在什么设备上？    pixmap 
+        
+      
+    
+    </summary>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/categories/QT/"/>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/tags/QT/"/>
+    
+  </entry>
   
   <entry>
     <title>QT基础</title>

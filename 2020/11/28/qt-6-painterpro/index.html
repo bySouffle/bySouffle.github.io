@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="QT基础, 甜点森林">
+    <meta name="keywords" content="QPainter Pro, 甜点森林">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>QT基础 | 甜点森林</title>
+    <title>QPainter Pro | 甜点森林</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">QT基础</h1>
+                    <h1 class="description center-align post-title">QPainter Pro</h1>
                 </div>
             </div>
         </div>
@@ -456,28 +456,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-15
+                    2020-11-28
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-15
+                    2020-11-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    550
+                    350
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -492,163 +492,83 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="QT基础"><a href="#QT基础" class="headerlink" title="QT基础"></a>QT基础</h1><h2 id="QWidget"><a href="#QWidget" class="headerlink" title="QWidget"></a>QWidget</h2><ul>
-<li>空的父系窗口，可以包含QPushbutton、QLineEdit、Layout等部件</li>
+                <h1 id="QPainter"><a href="#QPainter" class="headerlink" title="QPainter"></a>QPainter</h1><ul>
+<li>三要素<ul>
+<li>画在什么设备上？    pixmap  </li>
+<li>用什么画在什么上？  painter =&gt; pixmap</li>
+<li>渲染在什么部件上（render）？  QGraphicsView QGraphicsScene</li>
 </ul>
-<hr>
-<pre><code>QWidget w;
-w.setWindowTitle("zzz");
-
-//  显示窗口
-w.show();</code></pre>
-<hr>
-<h2 id="QPushButton"><a href="#QPushButton" class="headerlink" title="QPushButton"></a>QPushButton</h2><ul>
-<li>按钮也是一个窗口 继承QWidget</li>
-</ul>
-<hr>
-<pre><code>QPushButton button;
-button.setText("quit");</code></pre>
-<hr>
-<ol>
-<li>窗口之间存在父子关系,没有父子对象的窗口为主窗口</li>
-</ol>
-<hr>
-<pre><code>button.setParent(&amp;w);</code></pre>
-<hr>
-<ol start="2">
-<li>setGeometry(x, y, l, w) 设置几何位置</li>
-</ol>
-<hr>
-<pre><code>button.setGeometry(20,20,100,30);</code></pre>
-<hr>
-<h2 id="QLineEdit"><a href="#QLineEdit" class="headerlink" title="QLineEdit"></a>QLineEdit</h2><ul>
-<li>文本输入框</li>
-</ul>
-<hr>
-<pre><code>QLineEdit edit;
-edit.setParent(&amp;w);</code></pre>
-<hr>
-<ol>
-<li>显示方式(输入密码那种样子)</li>
-</ol>
-<hr>
-<pre><code>edit.setEchoMode(QLineEdit::Password);
-edit.text();</code></pre>
-<hr>
-<ol start="2">
-<li><p>输入匹配</p>
-<p> (1) 创建一个预期的QStringList</p>
-<p> (2) 创建一个QCompleter completer(QStringList()&lt;&lt;””);</p>
-<p> (3) 匹配模式<br> completer.setFilterMode(Qt::MatchContains)</p>
-<p> (4) 设置模式到QLineEdit</p>
-</li>
-</ol>
-<hr>
-<pre><code>QCompleter completer(QStringList()&lt;&lt;"123" &lt;&lt;"abc");
-
-completer.setFilterMode(Qt::MatchContains);
-
-edit.setCompleter(&amp;completer);</code></pre>
-<hr>
-<ol start="3">
-<li>默认显示</li>
-</ol>
-<hr>
-<pre><code>edit.setPlaceholderText("gogogo");
-edit.setParent(&amp;w);</code></pre>
-<hr>
-<h2 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h2><ul>
-<li><p>用<strong>QVBoxLayout</strong>、<strong>QHBoxLayout</strong>、<strong>QGridLayout</strong> 创建一个Layout</p>
-</li>
-<li><p>将按钮啥的放到 部件 里 layout.addWidget()</p>
-</li>
-<li><p>将Layout放到 QWidget 里 addWidget(&amp; layout)</p>
-<ol>
-<li>添加空位addSpacing</li>
-<li>addStretch 弹簧一样将layout中的 部件 压到一块 参数为比例</li>
-</ol>
 </li>
 </ul>
+<h2 id="QGraphicsView"><a href="#QGraphicsView" class="headerlink" title="QGraphicsView"></a>QGraphicsView</h2><ul>
+<li>显示</li>
+</ul>
 <hr>
-<pre><code>QHBoxLayout h_layout;
-//  addWidget 第二个参数是部件的长度比例
-h_layout.addWidget(&amp;button,1);
-h_layout.addWidget(&amp;edit,2);
-
-h_layout.addStretch(2);
-w.setLayout(&amp;h_layout);</code></pre>
+<pre><code>_view = new QGraphicsView(this);</code></pre>
+<hr>
+<h2 id="QGraphicsScene"><a href="#QGraphicsScene" class="headerlink" title="QGraphicsScene"></a>QGraphicsScene</h2><ul>
+<li>现场  添加到显示里</li>
+</ul>
+<hr>
+<pre><code>_view-&gt;setScene(_scene = new QGraphicsScene);</code></pre>
 <hr>
 <ul>
-<li>QGridLayout 矩阵式多个部件</li>
+<li>在现场中添加 <strong>item</strong> </li>
+<li>修改 <strong>item</strong> 的样式  </li>
 </ul>
 <hr>
-<pre><code>QGridLayout g_layout;
-//  QGridLayout 矩阵式多个部件
-g_layout.addWidget(&amp;button,0,0);
-g_layout.addWidget(&amp;edit,0,1);
-g_layout.addWidget(new QPushButton("1, 0"),1,0);
-g_layout.addWidget(new QPushButton("1, 1"),1,1);
+<pre><code>_scene-&gt;addItem(lineitem = new QGraphicsLineItem(0,0,100,100));
+_scene-&gt;addItem(textitem = new QGraphicsTextItem("ohayo"));
+_scene-&gt;addItem(pixmapItem = new QGraphicsPixmapItem(QPixmap("../xxxx.png")));
 
-g_layout.setColumnStretch(2,1);
-g_layout.setRowStretch(2,1);
-w.setLayout(&amp;g_layout);</code></pre>
+textitem-&gt;setPos(QPointF(200, 300));
+textitem-&gt;setFont(QFont("aaa",50,20,1));
+
+pixmapItem-&gt;setPos(100,100);</code></pre>
 <hr>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><hr>
-<pre><code>//  登录界面
-/*  1. 居中
- *  2. 用户名 label   edit
- *  3. 密码   label   edit
- *  4. 确认   button
- *      */
+<h1 id="保存图片"><a href="#保存图片" class="headerlink" title="保存图片"></a>保存图片</h1><ul>
+<li>先渲染图片<ul>
+<li>三要素： 设备 画笔 渲染 ==&gt; 保存</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>//        _view-&gt;render()   //重新操作一遍<br>//        _scene-&gt;render()</p>
+<pre><code>    QPixmap pixmap(size()); //  先要有一个画的设备
+    QPainter painter(&amp;pixmap);  //  画的工具
 
+    painter.fillRect(QRect(0,0,size().width(),size().height()),Qt::white);  //  画板背景
+    _scene-&gt;render(&amp;painter);   //  渲染  用什么渲染（画笔） 在什么上渲染（pixmap）
 
-QWidget *w = new QWidget;
-QLabel *m_l_username = new QLabel;
-QLabel *m_l_passwd = new QLabel;
+    pixmap.save("../abb.png");</code></pre>
+<hr>
+<h1 id="QGraphicsItemAnimation-动画"><a href="#QGraphicsItemAnimation-动画" class="headerlink" title="QGraphicsItemAnimation 动画"></a>QGraphicsItemAnimation 动画</h1><ul>
+<li>加入 item ==&gt; 设置QTimeline  ==&gt; 循环次数 ==&gt; </li>
+</ul>
+<hr>
+<pre><code>QGraphicsItemAnimation * animation = new QGraphicsItemAnimation;
 
-QLineEdit *m_e_username = new QLineEdit;
-QLineEdit *m_e_passwd = new QLineEdit;
+animation-&gt;setItem(pixmapItem);
 
-QPushButton *m_login_bt = new QPushButton;
+QTimeLine* timeline = new QTimeLine(3000);  // ms
+timeline-&gt;setLoopCount(2);
 
-QGridLayout *m_login_glayout = new QGridLayout;
-QHBoxLayout *m_login_bt_l = new QHBoxLayout;
+animation-&gt;setTimeLine( timeline );
+animation-&gt;setTranslationAt(1,200,200);
+timeline-&gt;start();</code></pre>
+<hr>
+<h1 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h1><hr>
+<pre><code>timer = new QTimer();
+timer-&gt;setInterval(1000);   // 间隔1s
+// 超时做的事 connect
+connect(timer,
+        &amp;QTimer::timeout,
+        this,
+        &amp;MyWidget::sl_timeout);
+timer-&gt;start();
 
-m_l_username-&gt;setText("用户名:");
-m_login_glayout-&gt;addWidget(m_l_username,1,1);
-
-//  m_login_glayout-&gt;setSpacing(10);
-m_e_username-&gt;setMaxLength(8);
-
-m_login_glayout-&gt;addWidget(m_e_username,1,2);
-
-m_l_passwd-&gt;setText("密码:");
-m_login_glayout-&gt;addWidget(m_l_passwd,2,1);
-
-m_login_glayout-&gt;setSpacing(10);
-
-m_e_passwd-&gt;setEchoMode(QLineEdit::Password);
-m_login_glayout-&gt;addWidget(m_e_passwd,2,2);
-
-m_login_glayout-&gt;setRowStretch(0,1);
-m_login_glayout-&gt;setColumnStretch(0,1);
-
-
-m_login_glayout-&gt;setRowStretch(4,1);
-m_login_glayout-&gt;setColumnStretch(4,1);
-
-m_login_bt-&gt;setText("登录");
-
-m_login_bt_l-&gt;addStretch(1);
-m_login_bt_l-&gt;addWidget(m_login_bt);
-
-m_login_glayout-&gt;addLayout(m_login_bt_l,3,2);
-//    m_login_glayout-&gt;addWidget(m_login_bt,3,2);
-
-w-&gt;setLayout(m_login_glayout);
-//    w-&gt;setLayout()
-
-w-&gt;show();</code></pre>
+    //  只触发一次
+timer-&gt;singleShot(1000,this,&amp;MyWidget::sl_timeout);</code></pre>
 <hr>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -693,7 +613,7 @@ w-&gt;show();</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bySouffle.github.io/2020/11/15/qt-1-ji-chu/">http://bySouffle.github.io/2020/11/15/qt-1-ji-chu/</a>
+                    <a href="http://bySouffle.github.io/2020/11/28/qt-6-painterpro/">http://bySouffle.github.io/2020/11/28/qt-6-painterpro/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -904,18 +824,18 @@ w-&gt;show();</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/28/qt-6-painterpro/">
+                <a href="/2020/11/28/c-thread/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/6.jpg" class="responsive-img" alt="QPainter Pro">
+                        <img src="/medias/banner/3.jpg" class="responsive-img" alt="linux C线程">
                         
-                        <span class="card-title">QPainter Pro</span>
+                        <span class="card-title">linux C线程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            QT学习
+                            基础知识
                         
                     </div>
                     <div class="publish-info">
@@ -926,8 +846,8 @@ w-&gt;show();</code></pre>
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/QT/" class="post-category">
-                                    QT
+                            <a href="/categories/C-Linux/" class="post-category">
+                                    C/Linux
                                 </a>
                             
                             
@@ -937,8 +857,8 @@ w-&gt;show();</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/QT/">
-                        <span class="chip bg-color">QT</span>
+                    <a href="/tags/C-Linux/">
+                        <span class="chip bg-color">C/Linux</span>
                     </a>
                     
                 </div>
@@ -952,18 +872,18 @@ w-&gt;show();</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/15/qt-1/">
+                <a href="/2020/11/15/qt-1-ji-chu/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/2.jpg" class="responsive-img" alt="QT窗口部件">
+                        <img src="/medias/banner/1.jpg" class="responsive-img" alt="QT基础">
                         
-                        <span class="card-title">QT窗口部件</span>
+                        <span class="card-title">QT基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            基础知识
+                            QT学习
                         
                     </div>
                     <div class="publish-info">

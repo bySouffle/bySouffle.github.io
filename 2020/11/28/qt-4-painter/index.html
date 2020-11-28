@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="QT基础, 甜点森林">
+    <meta name="keywords" content="QT绘画, 甜点森林">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>QT基础 | 甜点森林</title>
+    <title>QT绘画 | 甜点森林</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">QT基础</h1>
+                    <h1 class="description center-align post-title">QT绘画</h1>
                 </div>
             </div>
         </div>
@@ -456,28 +456,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-15
+                    2020-11-28
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-15
+                    2020-11-25
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    550
+                    688
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -492,163 +492,221 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="QT基础"><a href="#QT基础" class="headerlink" title="QT基础"></a>QT基础</h1><h2 id="QWidget"><a href="#QWidget" class="headerlink" title="QWidget"></a>QWidget</h2><ul>
-<li>空的父系窗口，可以包含QPushbutton、QLineEdit、Layout等部件</li>
-</ul>
-<hr>
-<pre><code>QWidget w;
-w.setWindowTitle("zzz");
-
-//  显示窗口
-w.show();</code></pre>
-<hr>
-<h2 id="QPushButton"><a href="#QPushButton" class="headerlink" title="QPushButton"></a>QPushButton</h2><ul>
-<li>按钮也是一个窗口 继承QWidget</li>
-</ul>
-<hr>
-<pre><code>QPushButton button;
-button.setText("quit");</code></pre>
-<hr>
+                <h1 id="QT绘画-QPainter"><a href="#QT绘画-QPainter" class="headerlink" title="QT绘画 QPainter"></a>QT绘画 QPainter</h1><ul>
+<li><p>重载 paintEvent</p>
 <ol>
-<li>窗口之间存在父子关系,没有父子对象的窗口为主窗口</li>
-</ol>
-<hr>
-<pre><code>button.setParent(&amp;w);</code></pre>
-<hr>
-<ol start="2">
-<li>setGeometry(x, y, l, w) 设置几何位置</li>
-</ol>
-<hr>
-<pre><code>button.setGeometry(20,20,100,30);</code></pre>
-<hr>
-<h2 id="QLineEdit"><a href="#QLineEdit" class="headerlink" title="QLineEdit"></a>QLineEdit</h2><ul>
-<li>文本输入框</li>
-</ul>
-<hr>
-<pre><code>QLineEdit edit;
-edit.setParent(&amp;w);</code></pre>
-<hr>
-<ol>
-<li>显示方式(输入密码那种样子)</li>
-</ol>
-<hr>
-<pre><code>edit.setEchoMode(QLineEdit::Password);
-edit.text();</code></pre>
-<hr>
-<ol start="2">
-<li><p>输入匹配</p>
-<p> (1) 创建一个预期的QStringList</p>
-<p> (2) 创建一个QCompleter completer(QStringList()&lt;&lt;””);</p>
-<p> (3) 匹配模式<br> completer.setFilterMode(Qt::MatchContains)</p>
-<p> (4) 设置模式到QLineEdit</p>
-</li>
-</ol>
-<hr>
-<pre><code>QCompleter completer(QStringList()&lt;&lt;"123" &lt;&lt;"abc");
+<li><p>准备画笔</p>
+<pre><code> QPainter p(this);
 
-completer.setFilterMode(Qt::MatchContains);
+     p.setPen(QPen(Qt::red, 2, Qt::DashLine));
+     p.setBrush(Qt::yellow); //  背景颜色
+     p.setFont(QFont("aaa", 40, 700, true)); //italic</code></pre>
+</li>
+<li><p>绘制形状</p>
+<pre><code> p.drawLine(QPoint(0,0), QPoint(100,100));
+ p.drawRect(QRect(40,60,100,50));
+ p.drawText(QPoint(300, 50), "Hellow");
+ p.drawPixmap(QPoint(40,40), QPixmap("../aaa.png"));</code></pre>
+</li>
+<li><p>图形变换</p>
+<pre><code> {
+     QTransform transfrom;       //  可将复杂的功能组合
+     transfrom.rotate(30);
+     transfrom.scale(.5,.5);     //  缩放
+     p.setTransform(transfrom);  //  旋转
+ }
 
-edit.setCompleter(&amp;completer);</code></pre>
-<hr>
-<ol start="3">
-<li>默认显示</li>
-</ol>
-<hr>
-<pre><code>edit.setPlaceholderText("gogogo");
-edit.setParent(&amp;w);</code></pre>
-<hr>
-<h2 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h2><ul>
-<li><p>用<strong>QVBoxLayout</strong>、<strong>QHBoxLayout</strong>、<strong>QGridLayout</strong> 创建一个Layout</p>
+ p.translate(100,100);   //  变换原点坐标单独</code></pre>
 </li>
-<li><p>将按钮啥的放到 部件 里 layout.addWidget()</p>
+<li><p>消除锯齿</p>
+<pre><code> p.setRenderHint(QPainter::Antialiasing);    //  消除锯齿    </code></pre>
 </li>
-<li><p>将Layout放到 QWidget 里 addWidget(&amp; layout)</p>
-<ol>
-<li>添加空位addSpacing</li>
-<li>addStretch 弹簧一样将layout中的 部件 压到一块 参数为比例</li>
+<li><p>*可以先画好图片放入pixmap中，再在窗口绘制</p>
+<pre><code> QPixmap pixmap(size());
+ QPainter p(&amp;pixmap);
+
+ QTransform transform;
+ transform.translate(50,50);
+ transform.rotate(30);
+ p.setTransform(transform);
+
+ p.drawxxx    ... ... 
+ P.end();
+
+ p.begin(this);
+ p.drawPixmap(0,0,pixmap);</code></pre>
+</li>
 </ol>
 </li>
 </ul>
+<h2 id="示例1（画板实现）"><a href="#示例1（画板实现）" class="headerlink" title="示例1（画板实现）"></a>示例1（画板实现）</h2><hr>
+<pre><code>// MyWidget.h 
+
+#include&lt;QVector&gt;
+#include &lt;QDebug&gt;
+    class MyWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit MyWidget(QWidget *parent = nullptr);
+
+    MyButton * button;
+
+
+    void paintEvent(QPaintEvent *);
+    void mousePressEvent(QMouseEvent *);
+    void mouseReleaseEvent(QMouseEvent *);
+    void mouseMoveEvent(QMouseEvent *);
+
+    QVector&lt;QPoint&gt; _pos;
+
+    QVector&lt; QVector&lt;QPoint&gt; &gt; _lines;
+
+signals:
+
+};</code></pre>
 <hr>
-<pre><code>QHBoxLayout h_layout;
-//  addWidget 第二个参数是部件的长度比例
-h_layout.addWidget(&amp;button,1);
-h_layout.addWidget(&amp;edit,2);
-
-h_layout.addStretch(2);
-w.setLayout(&amp;h_layout);</code></pre>
 <hr>
-<ul>
-<li>QGridLayout 矩阵式多个部件</li>
-</ul>
+<pre><code>//MyWidget.cpp
+
+void MyWidget::paintEvent(QPaintEvent *event)
+{
+    QPainter p(this);
+    for(int i = 0; i &lt; _lines.size();++i)
+    {
+        const QVector&lt;QPoint&gt; &amp; line = _lines.at(i);
+        {
+            for(int j = 0; j &lt; line.size()-1; ++j)
+            {
+                p.drawLine(line.at(j),line.at(j+1));
+            }
+        }
+    }
+}
+
+void MyWidget::mouseMoveEvent(QMouseEvent *event)
+{
+
+    if(_lines.size() == 0)
+    {
+        QVector&lt;QPoint&gt; line;
+        _lines.append(line);
+    }
+
+    QVector&lt;QPoint&gt;&amp; lastline = _lines.last();
+    lastline.append(event-&gt;pos());
+//    _pos.append(event-&gt;pos());
+    update();
+}
+
+void MyWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    QVector&lt;QPoint&gt;&amp; lastline = _lines.last();
+    lastline.append(event-&gt;pos());
+
+//    _pos.append(event-&gt;pos());
+}
+
+void MyWidget::mousePressEvent(QMouseEvent *event)
+{
+    QVector&lt;QPoint&gt; line;   //  一条线
+    _lines.append(line);     // 一条线放入很多条线 的向量里
+
+
+    QVector&lt;QPoint&gt;&amp; lastline = _lines.last();
+    lastline.append(event-&gt;pos());
+
+//    _pos.append(event-&gt;pos());
+}</code></pre>
 <hr>
-<pre><code>QGridLayout g_layout;
-//  QGridLayout 矩阵式多个部件
-g_layout.addWidget(&amp;button,0,0);
-g_layout.addWidget(&amp;edit,0,1);
-g_layout.addWidget(new QPushButton("1, 0"),1,0);
-g_layout.addWidget(new QPushButton("1, 1"),1,1);
+<h2 id="示例2-按钮变色"><a href="#示例2-按钮变色" class="headerlink" title="示例2 按钮变色"></a>示例2 按钮变色</h2><hr>
+<pre><code>//  MyButton.h
+#ifndef MYBUTTON_H
+#define MYBUTTON_H
 
-g_layout.setColumnStretch(2,1);
-g_layout.setRowStretch(2,1);
-w.setLayout(&amp;g_layout);</code></pre>
+#include &lt;QWidget&gt;
+#include &lt;QMouseEvent&gt;
+
+class MyButton : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit MyButton(QWidget *parent = nullptr);
+
+    MyButton(const QString &amp;text, QWidget* parent = 0);
+    QRect _rect;    //  按钮大小
+    QString _text;  //  按钮显示文字
+
+    bool _pressed;  //  按压判断
+
+    void paintEvent(QPaintEvent *event);
+
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+
+
+signals:
+
+    void clicked();
+
+};
+
+#endif // MYBUTTON_H</code></pre>
 <hr>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><hr>
-<pre><code>//  登录界面
-/*  1. 居中
- *  2. 用户名 label   edit
- *  3. 密码   label   edit
- *  4. 确认   button
- *      */
+<hr>
+<pre><code>//  MuButton.cpp
 
+#include "MyButton.h"
+#include &lt;QPainter&gt;
 
-QWidget *w = new QWidget;
-QLabel *m_l_username = new QLabel;
-QLabel *m_l_passwd = new QLabel;
+MyButton::MyButton(QWidget *parent) :
+    QWidget(parent), _rect(0,0,100,30)
+{
+    _pressed = false;   //  初始时 按压设置为否
+    this-&gt;setGeometry(_rect);
 
-QLineEdit *m_e_username = new QLineEdit;
-QLineEdit *m_e_passwd = new QLineEdit;
+}
 
-QPushButton *m_login_bt = new QPushButton;
+MyButton::MyButton(const QString &amp;text, QWidget *parent):
+                        QWidget(parent), _text(text), _rect(0,0,100,30)
+{
+    _pressed = false;
+    this-&gt;setGeometry(_rect);
+}
 
-QGridLayout *m_login_glayout = new QGridLayout;
-QHBoxLayout *m_login_bt_l = new QHBoxLayout;
+void MyButton::paintEvent(QPaintEvent *event)
+{
+    QPainter p(this);
+    if( _pressed == true )
+    {
+        p.setBrush(Qt::yellow); //  设置背景为黄色
+    }
+    else
+        p.setBrush(Qt::darkGray);   //  设置背景为灰色
+    p.drawRect(_rect);  //  画按钮框
+    p.drawText(_rect, _text, QTextOption(Qt::AlignCenter)); //  画文字
+}
 
-m_l_username-&gt;setText("用户名:");
-m_login_glayout-&gt;addWidget(m_l_username,1,1);
+void MyButton::mousePressEvent(QMouseEvent *event)
+{
+    //  按下时 按钮状态为 true 更新颜色
+    _pressed = true;
+    update();
+}
 
-//  m_login_glayout-&gt;setSpacing(10);
-m_e_username-&gt;setMaxLength(8);
+void MyButton::mouseReleaseEvent(QMouseEvent *event)
+{
+    //  释放时 按钮状态为 false 更新颜色
+    _pressed = false;
+    update();
 
-m_login_glayout-&gt;addWidget(m_e_username,1,2);
-
-m_l_passwd-&gt;setText("密码:");
-m_login_glayout-&gt;addWidget(m_l_passwd,2,1);
-
-m_login_glayout-&gt;setSpacing(10);
-
-m_e_passwd-&gt;setEchoMode(QLineEdit::Password);
-m_login_glayout-&gt;addWidget(m_e_passwd,2,2);
-
-m_login_glayout-&gt;setRowStretch(0,1);
-m_login_glayout-&gt;setColumnStretch(0,1);
-
-
-m_login_glayout-&gt;setRowStretch(4,1);
-m_login_glayout-&gt;setColumnStretch(4,1);
-
-m_login_bt-&gt;setText("登录");
-
-m_login_bt_l-&gt;addStretch(1);
-m_login_bt_l-&gt;addWidget(m_login_bt);
-
-m_login_glayout-&gt;addLayout(m_login_bt_l,3,2);
-//    m_login_glayout-&gt;addWidget(m_login_bt,3,2);
-
-w-&gt;setLayout(m_login_glayout);
-//    w-&gt;setLayout()
-
-w-&gt;show();</code></pre>
+    //  在设定框框的容器范围内才发送信号
+    if(_rect.contains(event-&gt;pos()))
+    {
+    emit clicked();
+    }
+//    emit clicked();
+}</code></pre>
 <hr>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -693,7 +751,7 @@ w-&gt;show();</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bySouffle.github.io/2020/11/15/qt-1-ji-chu/">http://bySouffle.github.io/2020/11/15/qt-1-ji-chu/</a>
+                    <a href="http://bySouffle.github.io/2020/11/28/qt-4-painter/">http://bySouffle.github.io/2020/11/28/qt-4-painter/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -904,12 +962,12 @@ w-&gt;show();</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/28/qt-6-painterpro/">
+                <a href="/2020/11/28/qt-2-kong-jian/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/6.jpg" class="responsive-img" alt="QPainter Pro">
+                        <img src="/medias/banner/2.jpg" class="responsive-img" alt="QT控件">
                         
-                        <span class="card-title">QPainter Pro</span>
+                        <span class="card-title">QT控件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -952,23 +1010,23 @@ w-&gt;show();</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/15/qt-1/">
+                <a href="/2020/11/28/qt-5-xin-hao-cao/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/2.jpg" class="responsive-img" alt="QT窗口部件">
+                        <img src="/medias/banner/5.jpg" class="responsive-img" alt="信号槽">
                         
-                        <span class="card-title">QT窗口部件</span>
+                        <span class="card-title">信号槽</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            基础知识
+                            QT学习
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
                             </span>
                         <span class="publish-author">
                             
