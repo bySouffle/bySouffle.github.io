@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="信号槽, 甜点森林">
+    <meta name="keywords" content="File I/O, 甜点森林">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>信号槽 | 甜点森林</title>
+    <title>File I/O | 甜点森林</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">信号槽</h1>
+                    <h1 class="description center-align post-title">File I/O</h1>
                 </div>
             </div>
         </div>
@@ -456,21 +456,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-25
+                    2020-12-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-28
+                    2020-12-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    318
+                    352
                 </div>
                 
 
@@ -492,28 +492,85 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="信号槽"><a href="#信号槽" class="headerlink" title="信号槽"></a>信号槽</h1><ul>
-<li>信号的定义必须在 <strong>signals</strong> 保留字下，并且不需要实现</li>
-<li>槽的定义在 <strong>slots</strong> 保留字下，需要实现 </li>
-<li>信号和槽通过 QObject::connect 函数连接</li>
-<li>当信号被触发 槽函数被调用</li>
-</ul>
-<hr>
+                <h1 id="文件-I-O-处理"><a href="#文件-I-O-处理" class="headerlink" title="文件 I/O 处理"></a>文件 I/O 处理</h1><h2 id="QFile"><a href="#QFile" class="headerlink" title="QFile"></a>QFile</h2><pre><code>QFile file("../Mytest.txt");</code></pre>
 <ul>
-<li>信号和槽是QT的扩展 所以实现信号和槽的类必须是 <strong>QObject</strong> 的子类</li>
-<li>实现信号和槽的类 必须以宏 <strong>Q_OBJECT</strong> 开始</li>
-<li>连接信号和槽，要用到 <strong>SINGAL</strong> 和 <strong>SLOT</strong> 宏 转换函数为字符串</li>
-<li>一个信号可以连接<strong>多个</strong>槽 槽函数调用顺序是不确定的</li>
-<li>多个信号可以同时连接一个槽</li>
-<li>信号可以连接信号，形成信号传导</li>
-<li>信号和槽的<strong>参数</strong>应该一样多 而且<strong>类型</strong>必须相同</li>
-<li>信号和槽都可以重载</li>
-<li>信号和槽都可以有默认参数</li>
-<li>槽函数可以像普通函数一样被调用</li>
-<li>在槽函数中调用 <strong>sender</strong> 可以获得信号调用者</li>
+<li><p>打开</p>
+<pre><code>  file.open(QIODevice::ReadWrite);</code></pre>
+</li>
+<li><p>读写</p>
+<pre><code>  file.write("abc", 4);</code></pre>
+</li>
+<li><p>关闭</p>
+<pre><code>  file.close();</code></pre>
+</li>
 </ul>
-<hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="一个类-QObject"><a href="#一个类-QObject" class="headerlink" title="一个类 QObject"></a>一个类 QObject</h3><h3 id="三个宏-Q-OBJECT-SIGNAL-SLOT"><a href="#三个宏-Q-OBJECT-SIGNAL-SLOT" class="headerlink" title="三个宏 Q_OBJECT SIGNAL SLOT"></a>三个宏 Q_OBJECT SIGNAL SLOT</h3><h3 id="三个保留字-signals-slots-emit"><a href="#三个保留字-signals-slots-emit" class="headerlink" title="三个保留字 signals slots emit"></a>三个保留字 signals slots emit</h3><script>
+<h2 id="QByteArray-和-QString-区别"><a href="#QByteArray-和-QString-区别" class="headerlink" title="QByteArray 和 QString 区别"></a>QByteArray 和 QString 区别</h2><ul>
+<li>QByteArray 字节数 与外部 IO 交互</li>
+<li>QString 字符数</li>
+</ul>
+<h2 id="QBuffer-缓存区"><a href="#QBuffer-缓存区" class="headerlink" title="QBuffer  缓存区"></a>QBuffer  缓存区</h2><pre><code>QBuffer buffer;
+buffer.open(QIODevice::ReadWrite);
+
+buffer.write("abc");
+buffer.write("aabbcc");
+
+buffer.close();</code></pre>
+<h2 id="QBuffer-将-图片-保存在缓存区再读取"><a href="#QBuffer-将-图片-保存在缓存区再读取" class="headerlink" title="QBuffer 将 图片 保存在缓存区再读取"></a>QBuffer 将 图片 保存在缓存区再读取</h2><pre><code>//  1. 创建 QBuffer
+QBuffer buffer;
+//  2. 打开缓存区 I/O 操作方式
+buffer.open(QIODevice::ReadWrite);
+//  3. 创建QPixmap
+QPixmap pixmap("../xxx.png");
+//  4. 将 pixmap 保存在 buffer
+pixmap.save(&amp;buffer,"PNG"); //  IO 格式
+//  5. 关闭buffer
+buffer.close();
+
+//  将缓存区的图片加载到pixmap
+QPixmap pixmap_w;
+pixmap_w.loadFromData(buffer.buffer(), "PNG");</code></pre>
+<h2 id="QTextStream"><a href="#QTextStream" class="headerlink" title="QTextStream"></a>QTextStream</h2><ul>
+<li><p>可以将多种类型的数据组合, 相当于 echo</p>
+<pre><code>  QFile file("../xxx.txt");
+  file.open(QIODevice::ReadWrite);
+
+  QTextStream textstream(&amp;file);
+  textstream &lt;&lt; 1 &lt;&lt; 1.2 &lt;&lt; "zzz";
+
+  file.close();</code></pre>
+</li>
+</ul>
+<h2 id="QDataStream"><a href="#QDataStream" class="headerlink" title="QDataStream"></a>QDataStream</h2><ul>
+<li><p>可以将多种类型的数据组合, 可以规定格式后存入取出</p>
+<pre><code>  QFile file("../file.txt");
+  file.open(QIODevice::ReadWrite);
+
+  QDataStream datastream(&amp;file);
+
+  int a = 0;
+  double b =1.2;
+  QString c = "zzz";
+
+  datastream &lt;&lt; a &lt;&lt; b &lt;&lt; c;</code></pre>
+</li>
+</ul>
+<h2 id="virtual-memory"><a href="#virtual-memory" class="headerlink" title="virtual memory"></a>virtual memory</h2><pre><code>QFile file("../xxx.data");
+file.open(QIODevice::ReadWrite);
+
+file.seek(65535);   // 设置索引的位置 |  字符设备不处理 / 块设备处理 
+file.write("1");
+
+file.close();
+
+file.open(QIODevice::ReadWrite);
+
+uchar* ptr = file.map(0, 64*1024);
+*ptr = 'a';
+ptr[3] = 'b';
+
+file.unmap(ptr);
+file.close();</code></pre>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -556,7 +613,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bySouffle.github.io/2020/11/25/qt-5-xin-hao-cao/">http://bySouffle.github.io/2020/11/25/qt-5-xin-hao-cao/</a>
+                    <a href="http://bySouffle.github.io/2020/12/01/qt-9-file/">http://bySouffle.github.io/2020/12/01/qt-9-file/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -767,12 +824,12 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/28/qt-6-painterpro/">
+                <a href="/2020/12/01/qt-8-mainwindow/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/6.jpg" class="responsive-img" alt="QPainter Pro">
+                        <img src="/medias/banner/7.jpg" class="responsive-img" alt="MainWindow">
                         
-                        <span class="card-title">QPainter Pro</span>
+                        <span class="card-title">MainWindow</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -783,7 +840,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-01
                         </span>
                         <span class="publish-author">
                             
@@ -815,12 +872,12 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/24/qt-4-painter/">
+                <a href="/2020/11/30/qt-7-dialog/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/4.jpg" class="responsive-img" alt="QT绘画">
+                        <img src="/medias/banner/6.jpg" class="responsive-img" alt="QPainter Pro">
                         
-                        <span class="card-title">QT绘画</span>
+                        <span class="card-title">QPainter Pro</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -831,7 +888,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-30
                             </span>
                         <span class="publish-author">
                             

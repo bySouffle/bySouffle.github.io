@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bysouffle.github.io/"/>
-  <updated>2020-11-28T10:04:00.937Z</updated>
+  <updated>2020-12-06T08:06:09.282Z</updated>
   <id>http://bysouffle.github.io/</id>
   
   <author>
@@ -15,6 +15,142 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++ 多次引用重复定义问题</title>
+    <link href="http://bysouffle.github.io/2020/12/04/c-chong-fu-ding-yi/"/>
+    <id>http://bysouffle.github.io/2020/12/04/c-chong-fu-ding-yi/</id>
+    <published>2020-12-04T03:06:00.000Z</published>
+    <updated>2020-12-06T08:06:09.282Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;C-多次引用重复定义问题&quot;&gt;&lt;a href=&quot;#C-多次引用重复定义问题&quot; class=&quot;headerlink&quot; title=&quot;C++ 多次引用重复定义问题&quot;&gt;&lt;/a&gt;C++
+        
+      
+    
+    </summary>
+    
+    
+      <category term="C/C++" scheme="http://bySouffle.github.io/categories/C-C/"/>
+    
+    
+      <category term="C/C++" scheme="http://bySouffle.github.io/tags/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Socket</title>
+    <link href="http://bysouffle.github.io/2020/12/02/qt-10-socket/"/>
+    <id>http://bysouffle.github.io/2020/12/02/qt-10-socket/</id>
+    <published>2020-12-02T00:39:00.000Z</published>
+    <updated>2020-12-02T01:22:39.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;QT-Socket&quot;&gt;&lt;a href=&quot;#QT-Socket&quot; class=&quot;headerlink&quot; title=&quot;QT Socket&quot;&gt;&lt;/a&gt;QT Socket&lt;/h1&gt;&lt;h2 id=&quot;TcpServer&quot;&gt;&lt;a href=&quot;#TcpServer&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/categories/QT/"/>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/tags/QT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MainWindow</title>
+    <link href="http://bysouffle.github.io/2020/12/01/qt-8-mainwindow/"/>
+    <id>http://bysouffle.github.io/2020/12/01/qt-8-mainwindow/</id>
+    <published>2020-12-01T10:34:00.000Z</published>
+    <updated>2020-12-01T12:06:51.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;MainWindow&quot;&gt;&lt;a href=&quot;#MainWindow&quot; class=&quot;headerlink&quot; title=&quot;MainWindow&quot;&gt;&lt;/a&gt;MainWindow&lt;/h1&gt;&lt;p&gt;含有 QMenuBar, QToolBar 和
+        
+      
+    
+    </summary>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/categories/QT/"/>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/tags/QT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>File I/O</title>
+    <link href="http://bysouffle.github.io/2020/12/01/qt-9-file/"/>
+    <id>http://bysouffle.github.io/2020/12/01/qt-9-file/</id>
+    <published>2020-12-01T10:34:00.000Z</published>
+    <updated>2020-12-02T00:38:44.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;文件-I-O-处理&quot;&gt;&lt;a href=&quot;#文件-I-O-处理&quot; class=&quot;headerlink&quot; title=&quot;文件 I/O 处理&quot;&gt;&lt;/a&gt;文件 I/O 处理&lt;/h1&gt;&lt;h2 id=&quot;QFile&quot;&gt;&lt;a href=&quot;#QFile&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/categories/QT/"/>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/tags/QT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QPainter Pro</title>
+    <link href="http://bysouffle.github.io/2020/11/30/qt-7-dialog/"/>
+    <id>http://bysouffle.github.io/2020/11/30/qt-7-dialog/</id>
+    <published>2020-11-30T00:34:00.000Z</published>
+    <updated>2020-12-01T10:29:36.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;QDialog&quot;&gt;&lt;a href=&quot;#QDialog&quot; class=&quot;headerlink&quot; title=&quot;QDialog&quot;&gt;&lt;/a&gt;QDialog&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;Dialog 和 Widget 的区别 Dialog
+        
+      
+    
+    </summary>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/categories/QT/"/>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/tags/QT/"/>
+    
+  </entry>
   
   <entry>
     <title>QPainter Pro</title>
