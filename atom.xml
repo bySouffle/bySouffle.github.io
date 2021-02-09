@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bysouffle.github.io/"/>
-  <updated>2020-12-06T08:06:09.282Z</updated>
+  <updated>2021-01-05T02:34:17.000Z</updated>
   <id>http://bysouffle.github.io/</id>
   
   <author>
@@ -15,6 +15,87 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://bysouffle.github.io/2021/02/09/filereadme/"/>
+    <id>http://bysouffle.github.io/2021/02/09/filereadme/</id>
+    <published>2021-02-09T04:32:08.503Z</published>
+    <updated>2021-01-05T02:34:17.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;pre&gt;&lt;code&gt;ethercat-1.5.2-patch.tar.gz     打过补丁的ethercat包
+
+linux-4.19.152.tar.gz           普通的linux源代码
+
+linux-4.19.152-patch.tar.gz    
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>QT Linux pack</title>
+    <link href="http://bysouffle.github.io/2020/12/25/qt-ldd-pack/"/>
+    <id>http://bysouffle.github.io/2020/12/25/qt-ldd-pack/</id>
+    <published>2020-12-25T01:15:00.000Z</published>
+    <updated>2021-01-04T07:12:39.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;QT-ldd-方法-打包跨-Linux-无QT环境应用&quot;&gt;&lt;a href=&quot;#QT-ldd-方法-打包跨-Linux-无QT环境应用&quot; class=&quot;headerlink&quot; title=&quot;QT ldd 方法 打包跨 Linux 无QT环境应用&quot;&gt;&lt;/a&gt;QT
+        
+      
+    
+    </summary>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/categories/QT/"/>
+    
+    
+      <category term="QT" scheme="http://bySouffle.github.io/tags/QT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QT表查找</title>
+    <link href="http://bysouffle.github.io/2020/12/07/qt-biao-cha-xun/"/>
+    <id>http://bysouffle.github.io/2020/12/07/qt-biao-cha-xun/</id>
+    <published>2020-12-07T00:31:00.000Z</published>
+    <updated>2020-12-07T00:54:47.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;QT表查找&quot;&gt;&lt;a href=&quot;#QT表查找&quot; class=&quot;headerlink&quot; title=&quot;QT表查找&quot;&gt;&lt;/a&gt;QT表查找&lt;/h1&gt;&lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="QT/设计模式" scheme="http://bySouffle.github.io/categories/QT-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="QT/设计模式" scheme="http://bySouffle.github.io/tags/QT-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>C++ 多次引用重复定义问题</title>

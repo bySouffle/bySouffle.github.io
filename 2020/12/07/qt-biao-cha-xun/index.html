@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MainWindow, 甜点森林">
+    <meta name="keywords" content="QT表查找, 甜点森林">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MainWindow | 甜点森林</title>
+    <title>QT表查找 | 甜点森林</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MainWindow</h1>
+                    <h1 class="description center-align post-title">QT表查找</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/QT/">
-                                <span class="chip bg-color">QT</span>
+                            <a href="/tags/QT-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                                <span class="chip bg-color">QT/设计模式</span>
                             </a>
                         
                     </div>
@@ -443,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/QT/" class="post-category">
-                                QT
+                            <a href="/categories/QT-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                QT/设计模式
                             </a>
                         
                     </div>
@@ -456,21 +456,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-01
+                    2020-12-07
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-12-01
+                    2020-12-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    217
+                    253
                 </div>
                 
 
@@ -492,54 +492,74 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MainWindow"><a href="#MainWindow" class="headerlink" title="MainWindow"></a>MainWindow</h1><p>含有 QMenuBar, QToolBar 和 QStatusBar的窗口</p>
-<h2 id="QMenuBar"><a href="#QMenuBar" class="headerlink" title="QMenuBar"></a>QMenuBar</h2><pre><code>QMenuBar *pMenuBar = menuBar();</code></pre>
-<h3 id="QMenu"><a href="#QMenu" class="headerlink" title="QMenu"></a>QMenu</h3><pre><code>QMenu *menu = pMenuBar-&gt;addMenu("&amp;File");</code></pre>
-<ul>
-<li><p>当需要在其他地方使用 menu 时, 可以创建一个 _menu 指针等于 menu</p>
-<pre><code>  _menu = menu;</code></pre>
-</li>
-<li><p>QAction</p>
-<pre><code>  QAction *OpenAction = 
-  menu-&gt; addAction("&amp;Open",  // 名字
-                   this, 
-                   &amp; MyMainWindow::sl_open,   //  处理函数 
-                   QKeySequence::Open     //  快捷键 
-                   );</code></pre>
+                <h1 id="QT表查找"><a href="#QT表查找" class="headerlink" title="QT表查找"></a>QT表查找</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
+<li>需要将某头文件中的 menu 作为QComboBox 的选项选择 且返回 menu </li>
+</ul>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ul>
+<li><ol>
+<li>首先声明一个结构体，包含选项名字和实际返回的 menu 类型 </li>
+</ol>
 </li>
 </ul>
-<h2 id="QToolBar"><a href="#QToolBar" class="headerlink" title="QToolBar"></a>QToolBar</h2><pre><code>QToolBar *toolBar = this-&gt;addToolBar("MyToolBar");  
-toolBar-&gt;addAction(OpenAction);
-toolBar-&gt;addAction(SaveAction);
-toolBar-&gt;addAction(ExitAction);</code></pre>
-<h2 id="QStatusBar-layout？"><a href="#QStatusBar-layout？" class="headerlink" title="QStatusBar   //  layout？"></a>QStatusBar   //  layout？</h2><pre><code>QStatusBar * statusBar = this-&gt;statusBar();</code></pre>
-<h2 id="QSystemTrayIcon"><a href="#QSystemTrayIcon" class="headerlink" title="QSystemTrayIcon"></a>QSystemTrayIcon</h2><ul>
-<li><p>系统托盘图标</p>
-<pre><code>  _icon = new QSystemTrayIcon();
-  _icon-&gt;setIcon(QIcon("../favicon.ico"));    
-  _icon-&gt;setToolTip("This is tray icon test");
-  _icon-&gt;show();
-  _icon-&gt;setContextMenu(_menu);   //  点击菜单</code></pre>
+<pre><code>        struct baudrate_item
+        {
+            QString m_name ;
+            QSerialPort::BaudRate m_baudrate;
+        } ;</code></pre>
+<ol start="2">
+<li><p>接着声明一个上述结构体的 List</p>
+<pre><code>   QList &lt; baudrate_item &gt; m_baudrate_list ;</code></pre>
 </li>
-<li><p>点击显示隐藏</p>
-<pre><code>  connect(_icon,
-          &amp;QSystemTrayIcon::activated,
-          this,
-          &amp; MyMainWindow::sl_iconevent);
+<li><p>定义一个 func 按顺序填充这个 List</p>
+<pre><code>   void environment::fun_cons_baudrate_list()
+   {
+       m_baudrate_list.clear() ;</code></pre>
+</li>
+</ol>
+<pre><code>            {
+                baudrate_item  item ;
+                item.m_name = "115200" ;
+                item.m_baudrate =  QSerialPort::Baud115200 ;
+                m_baudrate_list.append( item ) ;
+            }
+            {
+                baudrate_item  item ;
+                item.m_name = "57600" ;
+                item.m_baudrate =  QSerialPort::Baud57600 ;
+                m_baudrate_list.append( item ) ;
+            }
 
-  void MyMainWindow::sl_iconevent(QSystemTrayIcon::ActivationReason reason)
-  {
-      if(reason == QSystemTrayIcon::Trigger)
-      {
-          if(this-&gt;isHidden())
-              this-&gt;show();
-          else {
-              this-&gt;hide();
-          }
-      }
-  }</code></pre>
-</li>
-</ul>
+                   ... ...
+
+        }
+
+4. 定义一个 func 返回选项 Name 的 List
+
+        QStringList environment::fun_get_baudrate_str()
+        {
+            QStringList i_str_list  ;
+            i_str_list.clear() ;
+
+            for(int i = 0 ; i &lt; m_baudrate_list.size() ; i++ )
+            {
+                i_str_list.append( m_baudrate_list.at(i).m_name );
+            }
+            return  i_str_list ;
+        }
+
+5. 定义一个 func，通过索引返回 emnu 类型的参数
+
+        QSerialPort::BaudRate environment::fun_get_idx_of_enum(int idx)
+        {
+            QSerialPort::BaudRate i_baudrate = QSerialPort::Baud115200 ;
+
+            if( m_baudrate_list.size() &gt; idx)
+            {
+                i_baudrate = m_baudrate_list.at(idx).m_baudrate ;
+            }
+
+            return  i_baudrate ;
+        }</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -583,7 +603,7 @@ toolBar-&gt;addAction(ExitAction);</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bySouffle.github.io/2020/12/01/qt-8-mainwindow/">http://bySouffle.github.io/2020/12/01/qt-8-mainwindow/</a>
+                    <a href="http://bySouffle.github.io/2020/12/07/qt-biao-cha-xun/">http://bySouffle.github.io/2020/12/07/qt-biao-cha-xun/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -621,8 +641,8 @@ toolBar-&gt;addAction(ExitAction);</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/QT/">
-                                    <span class="chip bg-color">QT</span>
+                                <a href="/tags/QT-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                                    <span class="chip bg-color">QT/设计模式</span>
                                 </a>
                             
                         </div>
@@ -794,23 +814,23 @@ toolBar-&gt;addAction(ExitAction);</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/12/02/qt-10-socket/">
+                <a href="/2020/12/25/qt-ldd-pack/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/1.jpg" class="responsive-img" alt="Socket">
+                        <img src="/medias/banner/1.jpg" class="responsive-img" alt="QT Linux pack">
                         
-                        <span class="card-title">Socket</span>
+                        <span class="card-title">QT Linux pack</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            QT学习
+                            QT 应用
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-02
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-25
                         </span>
                         <span class="publish-author">
                             
@@ -842,30 +862,30 @@ toolBar-&gt;addAction(ExitAction);</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/01/qt-9-file/">
+                <a href="/2020/12/04/c-chong-fu-ding-yi/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/8.jpg" class="responsive-img" alt="File I/O">
+                        <img src="/medias/banner/1.jpg" class="responsive-img" alt="C++ 多次引用重复定义问题">
                         
-                        <span class="card-title">File I/O</span>
+                        <span class="card-title">C++ 多次引用重复定义问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            QT学习
+                            问题
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/QT/" class="post-category">
-                                    QT
+                            <a href="/categories/C-C/" class="post-category">
+                                    C/C++
                                 </a>
                             
                             
@@ -875,8 +895,8 @@ toolBar-&gt;addAction(ExitAction);</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/QT/">
-                        <span class="chip bg-color">QT</span>
+                    <a href="/tags/C-C/">
+                        <span class="chip bg-color">C/C++</span>
                     </a>
                     
                 </div>

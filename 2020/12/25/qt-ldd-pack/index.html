@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MainWindow, 甜点森林">
+    <meta name="keywords" content="QT Linux pack, 甜点森林">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MainWindow | 甜点森林</title>
+    <title>QT Linux pack | 甜点森林</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MainWindow</h1>
+                    <h1 class="description center-align post-title">QT Linux pack</h1>
                 </div>
             </div>
         </div>
@@ -456,21 +456,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-01
+                    2020-12-25
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-12-01
+                    2021-01-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    217
+                    396
                 </div>
                 
 
@@ -492,55 +492,47 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MainWindow"><a href="#MainWindow" class="headerlink" title="MainWindow"></a>MainWindow</h1><p>含有 QMenuBar, QToolBar 和 QStatusBar的窗口</p>
-<h2 id="QMenuBar"><a href="#QMenuBar" class="headerlink" title="QMenuBar"></a>QMenuBar</h2><pre><code>QMenuBar *pMenuBar = menuBar();</code></pre>
-<h3 id="QMenu"><a href="#QMenu" class="headerlink" title="QMenu"></a>QMenu</h3><pre><code>QMenu *menu = pMenuBar-&gt;addMenu("&amp;File");</code></pre>
-<ul>
-<li><p>当需要在其他地方使用 menu 时, 可以创建一个 _menu 指针等于 menu</p>
-<pre><code>  _menu = menu;</code></pre>
-</li>
-<li><p>QAction</p>
-<pre><code>  QAction *OpenAction = 
-  menu-&gt; addAction("&amp;Open",  // 名字
-                   this, 
-                   &amp; MyMainWindow::sl_open,   //  处理函数 
-                   QKeySequence::Open     //  快捷键 
-                   );</code></pre>
-</li>
-</ul>
-<h2 id="QToolBar"><a href="#QToolBar" class="headerlink" title="QToolBar"></a>QToolBar</h2><pre><code>QToolBar *toolBar = this-&gt;addToolBar("MyToolBar");  
-toolBar-&gt;addAction(OpenAction);
-toolBar-&gt;addAction(SaveAction);
-toolBar-&gt;addAction(ExitAction);</code></pre>
-<h2 id="QStatusBar-layout？"><a href="#QStatusBar-layout？" class="headerlink" title="QStatusBar   //  layout？"></a>QStatusBar   //  layout？</h2><pre><code>QStatusBar * statusBar = this-&gt;statusBar();</code></pre>
-<h2 id="QSystemTrayIcon"><a href="#QSystemTrayIcon" class="headerlink" title="QSystemTrayIcon"></a>QSystemTrayIcon</h2><ul>
-<li><p>系统托盘图标</p>
-<pre><code>  _icon = new QSystemTrayIcon();
-  _icon-&gt;setIcon(QIcon("../favicon.ico"));    
-  _icon-&gt;setToolTip("This is tray icon test");
-  _icon-&gt;show();
-  _icon-&gt;setContextMenu(_menu);   //  点击菜单</code></pre>
-</li>
-<li><p>点击显示隐藏</p>
-<pre><code>  connect(_icon,
-          &amp;QSystemTrayIcon::activated,
-          this,
-          &amp; MyMainWindow::sl_iconevent);
+                <h1 id="QT-ldd-方法-打包跨-Linux-无QT环境应用"><a href="#QT-ldd-方法-打包跨-Linux-无QT环境应用" class="headerlink" title="QT ldd 方法 打包跨 Linux 无QT环境应用"></a>QT ldd 方法 打包跨 Linux 无QT环境应用</h1><h3 id="1-新建一个文件夹-准备-ldd-输出脚本和应用运行脚本"><a href="#1-新建一个文件夹-准备-ldd-输出脚本和应用运行脚本" class="headerlink" title="1. 新建一个文件夹 准备 ldd 输出脚本和应用运行脚本"></a>1. 新建一个文件夹 准备 ldd 输出脚本和应用运行脚本</h3><hr>
+<pre><code># ldd.sh  ldd 输出脚本
 
-  void MyMainWindow::sl_iconevent(QSystemTrayIcon::ActivationReason reason)
-  {
-      if(reason == QSystemTrayIcon::Trigger)
-      {
-          if(this-&gt;isHidden())
-              this-&gt;show();
-          else {
-              this-&gt;hide();
-          }
-      }
-  }</code></pre>
-</li>
-</ul>
-<script>
+#! /bin/bash
+LibDir=$PWD"/lib"
+Target=$1
+lib_array=($(ldd $Target | grep -o "/.*" | grep -o "/.*/[^[:space:]]*"))
+$(mkdir $LibDir)
+for Variable in ${lib_array[@]}
+do
+    cp "$Variable" $LibDir
+done</code></pre>
+<hr>
+<hr>
+<pre><code># xxx.sh 应用运行脚本   !!!!!!!! 脚本名字与 QT release 生成的应用名字一致
+
+#!/bin/sh
+appname=`basename $0 | sed s,\.sh$,,`
+dirname=`dirname $0`
+tmp="${dirname#?}"
+if [ "${dirname%$tmp}" != "/" ]; then
+dirname=$PWD/$dirname
+fi
+LD_LIBRARY_PATH=$dirname
+export LD_LIBRARY_PATH
+$dirname/$appname "$@"</code></pre>
+<hr>
+<h3 id="2-给两个脚本添加可执行权限"><a href="#2-给两个脚本添加可执行权限" class="headerlink" title="2. 给两个脚本添加可执行权限"></a>2. 给两个脚本添加可执行权限</h3><pre><code>sudo chmod 777 ldd.sh
+sudo chmod 777 xxx.sh   //  !!!!!!!! 脚本名字与 QT release 生成的应用名字一致</code></pre>
+<h3 id="3-新建一个存放打包应用的文件夹"><a href="#3-新建一个存放打包应用的文件夹" class="headerlink" title="3. 新建一个存放打包应用的文件夹"></a>3. 新建一个存放打包应用的文件夹</h3><hr>
+<h3 id="4-将-ldd-sh-复制到-QT-编译的-release-目录"><a href="#4-将-ldd-sh-复制到-QT-编译的-release-目录" class="headerlink" title="4. 将 ldd.sh 复制到 QT 编译的 release 目录"></a>4. 将 ldd.sh 复制到 QT 编译的 release 目录</h3><pre><code># 执行
+./ldd.sh xxx
+
+之后将 lib 文件复制到第三步创建的文件夹中</code></pre>
+<h3 id="5-将-ldd-sh-复制到-QT-安装目录的-platforms-文件夹中"><a href="#5-将-ldd-sh-复制到-QT-安装目录的-platforms-文件夹中" class="headerlink" title="5. 将 ldd.sh 复制到 QT 安装目录的 platforms 文件夹中"></a>5. 将 ldd.sh 复制到 QT 安装目录的 platforms 文件夹中</h3><pre><code># 执行
+./ldd.sh libqxcb.so
+
+之后将 lib 文件复制到第三步创建的文件夹中</code></pre>
+<h3 id="6-将-platforms-整个文件夹复制到第三步创建的文件夹中"><a href="#6-将-platforms-整个文件夹复制到第三步创建的文件夹中" class="headerlink" title="6. 将 platforms 整个文件夹复制到第三步创建的文件夹中"></a>6. 将 platforms 整个文件夹复制到第三步创建的文件夹中</h3><hr>
+<h3 id="7-将-xxx-sh-复制到第三步创建的文件夹中，运行脚本"><a href="#7-将-xxx-sh-复制到第三步创建的文件夹中，运行脚本" class="headerlink" title="7. 将 xxx.sh 复制到第三步创建的文件夹中，运行脚本"></a>7. 将 xxx.sh 复制到第三步创建的文件夹中，运行脚本</h3><hr>
+<h3 id="8-如果跨-linux-段错误，删除公有库，如果不知道哪些是，可将除QT外的库拷贝到另一个文件夹中，运行程序，差什么加什么。"><a href="#8-如果跨-linux-段错误，删除公有库，如果不知道哪些是，可将除QT外的库拷贝到另一个文件夹中，运行程序，差什么加什么。" class="headerlink" title="8. 如果跨 linux 段错误，删除公有库，如果不知道哪些是，可将除QT外的库拷贝到另一个文件夹中，运行程序，差什么加什么。"></a>8. 如果跨 linux 段错误，删除公有库，如果不知道哪些是，可将除QT外的库拷贝到另一个文件夹中，运行程序，差什么加什么。</h3><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -583,7 +575,7 @@ toolBar-&gt;addAction(ExitAction);</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bySouffle.github.io/2020/12/01/qt-8-mainwindow/">http://bySouffle.github.io/2020/12/01/qt-8-mainwindow/</a>
+                    <a href="http://bySouffle.github.io/2020/12/25/qt-ldd-pack/">http://bySouffle.github.io/2020/12/25/qt-ldd-pack/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -794,43 +786,36 @@ toolBar-&gt;addAction(ExitAction);</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/12/02/qt-10-socket/">
+                <a href="/2021/02/09/filereadme/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/1.jpg" class="responsive-img" alt="Socket">
                         
-                        <span class="card-title">Socket</span>
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            QT学习
+                            ethercat-1.5.2-patch.tar.gz     打过补丁的ethercat包
+
+linux-4.19.152.tar.gz           普通的linux源代码
+
+linux-4.19.152-patch.tar.gz
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-02
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-09
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/QT/" class="post-category">
-                                    QT
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            bySouffle
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/QT/">
-                        <span class="chip bg-color">QT</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -842,30 +827,30 @@ toolBar-&gt;addAction(ExitAction);</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/01/qt-9-file/">
+                <a href="/2020/12/07/qt-biao-cha-xun/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/8.jpg" class="responsive-img" alt="File I/O">
+                        <img src="/medias/banner/2.jpg" class="responsive-img" alt="QT表查找">
                         
-                        <span class="card-title">File I/O</span>
+                        <span class="card-title">QT表查找</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            QT学习
+                            设计模式
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-07
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/QT/" class="post-category">
-                                    QT
+                            <a href="/categories/QT-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                    QT/设计模式
                                 </a>
                             
                             
@@ -875,8 +860,8 @@ toolBar-&gt;addAction(ExitAction);</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/QT/">
-                        <span class="chip bg-color">QT</span>
+                    <a href="/tags/QT-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="chip bg-color">QT/设计模式</span>
                     </a>
                     
                 </div>

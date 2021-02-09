@@ -4,6 +4,69 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2021/02/09/filereadme/"/>
+      <url>/2021/02/09/filereadme/</url>
+      
+        <content type="html"><![CDATA[<pre><code>ethercat-1.5.2-patch.tar.gz     打过补丁的ethercat包linux-4.19.152.tar.gz           普通的linux源代码linux-4.19.152-patch.tar.gz     打过xenomai补丁的linux源代码    xenomai-image-headers.tar.gz    xenomai安装镜像以及头文件   libxenomai.tar.gz               xenomai所需库   ipipe-core-4.19.152-cip37-x86-15.patch  cobalt-core-4.19.152-v3.1-rc4.patch  </code></pre><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>QT Linux pack</title>
+      <link href="/2020/12/25/qt-ldd-pack/"/>
+      <url>/2020/12/25/qt-ldd-pack/</url>
+      
+        <content type="html"><![CDATA[<h1 id="QT-ldd-方法-打包跨-Linux-无QT环境应用"><a href="#QT-ldd-方法-打包跨-Linux-无QT环境应用" class="headerlink" title="QT ldd 方法 打包跨 Linux 无QT环境应用"></a>QT ldd 方法 打包跨 Linux 无QT环境应用</h1><h3 id="1-新建一个文件夹-准备-ldd-输出脚本和应用运行脚本"><a href="#1-新建一个文件夹-准备-ldd-输出脚本和应用运行脚本" class="headerlink" title="1. 新建一个文件夹 准备 ldd 输出脚本和应用运行脚本"></a>1. 新建一个文件夹 准备 ldd 输出脚本和应用运行脚本</h3><hr><pre><code># ldd.sh  ldd 输出脚本#! /bin/bashLibDir=$PWD"/lib"Target=$1lib_array=($(ldd $Target | grep -o "/.*" | grep -o "/.*/[^[:space:]]*"))$(mkdir $LibDir)for Variable in ${lib_array[@]}do    cp "$Variable" $LibDirdone</code></pre><hr><hr><pre><code># xxx.sh 应用运行脚本   !!!!!!!! 脚本名字与 QT release 生成的应用名字一致#!/bin/shappname=`basename $0 | sed s,\.sh$,,`dirname=`dirname $0`tmp="${dirname#?}"if [ "${dirname%$tmp}" != "/" ]; thendirname=$PWD/$dirnamefiLD_LIBRARY_PATH=$dirnameexport LD_LIBRARY_PATH$dirname/$appname "$@"</code></pre><hr><h3 id="2-给两个脚本添加可执行权限"><a href="#2-给两个脚本添加可执行权限" class="headerlink" title="2. 给两个脚本添加可执行权限"></a>2. 给两个脚本添加可执行权限</h3><pre><code>sudo chmod 777 ldd.shsudo chmod 777 xxx.sh   //  !!!!!!!! 脚本名字与 QT release 生成的应用名字一致</code></pre><h3 id="3-新建一个存放打包应用的文件夹"><a href="#3-新建一个存放打包应用的文件夹" class="headerlink" title="3. 新建一个存放打包应用的文件夹"></a>3. 新建一个存放打包应用的文件夹</h3><hr><h3 id="4-将-ldd-sh-复制到-QT-编译的-release-目录"><a href="#4-将-ldd-sh-复制到-QT-编译的-release-目录" class="headerlink" title="4. 将 ldd.sh 复制到 QT 编译的 release 目录"></a>4. 将 ldd.sh 复制到 QT 编译的 release 目录</h3><pre><code># 执行./ldd.sh xxx之后将 lib 文件复制到第三步创建的文件夹中</code></pre><h3 id="5-将-ldd-sh-复制到-QT-安装目录的-platforms-文件夹中"><a href="#5-将-ldd-sh-复制到-QT-安装目录的-platforms-文件夹中" class="headerlink" title="5. 将 ldd.sh 复制到 QT 安装目录的 platforms 文件夹中"></a>5. 将 ldd.sh 复制到 QT 安装目录的 platforms 文件夹中</h3><pre><code># 执行./ldd.sh libqxcb.so之后将 lib 文件复制到第三步创建的文件夹中</code></pre><h3 id="6-将-platforms-整个文件夹复制到第三步创建的文件夹中"><a href="#6-将-platforms-整个文件夹复制到第三步创建的文件夹中" class="headerlink" title="6. 将 platforms 整个文件夹复制到第三步创建的文件夹中"></a>6. 将 platforms 整个文件夹复制到第三步创建的文件夹中</h3><hr><h3 id="7-将-xxx-sh-复制到第三步创建的文件夹中，运行脚本"><a href="#7-将-xxx-sh-复制到第三步创建的文件夹中，运行脚本" class="headerlink" title="7. 将 xxx.sh 复制到第三步创建的文件夹中，运行脚本"></a>7. 将 xxx.sh 复制到第三步创建的文件夹中，运行脚本</h3><hr><h3 id="8-如果跨-linux-段错误，删除公有库，如果不知道哪些是，可将除QT外的库拷贝到另一个文件夹中，运行程序，差什么加什么。"><a href="#8-如果跨-linux-段错误，删除公有库，如果不知道哪些是，可将除QT外的库拷贝到另一个文件夹中，运行程序，差什么加什么。" class="headerlink" title="8. 如果跨 linux 段错误，删除公有库，如果不知道哪些是，可将除QT外的库拷贝到另一个文件夹中，运行程序，差什么加什么。"></a>8. 如果跨 linux 段错误，删除公有库，如果不知道哪些是，可将除QT外的库拷贝到另一个文件夹中，运行程序，差什么加什么。</h3><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> QT </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> QT </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>QT表查找</title>
+      <link href="/2020/12/07/qt-biao-cha-xun/"/>
+      <url>/2020/12/07/qt-biao-cha-xun/</url>
+      
+        <content type="html"><![CDATA[<h1 id="QT表查找"><a href="#QT表查找" class="headerlink" title="QT表查找"></a>QT表查找</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul><li>需要将某头文件中的 menu 作为QComboBox 的选项选择 且返回 menu </li></ul><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ul><li><ol><li>首先声明一个结构体，包含选项名字和实际返回的 menu 类型 </li></ol></li></ul><pre><code>        struct baudrate_item        {            QString m_name ;            QSerialPort::BaudRate m_baudrate;        } ;</code></pre><ol start="2"><li><p>接着声明一个上述结构体的 List</p><pre><code>   QList &lt; baudrate_item &gt; m_baudrate_list ;</code></pre></li><li><p>定义一个 func 按顺序填充这个 List</p><pre><code>   void environment::fun_cons_baudrate_list()   {       m_baudrate_list.clear() ;</code></pre></li></ol><pre><code>            {                baudrate_item  item ;                item.m_name = "115200" ;                item.m_baudrate =  QSerialPort::Baud115200 ;                m_baudrate_list.append( item ) ;            }            {                baudrate_item  item ;                item.m_name = "57600" ;                item.m_baudrate =  QSerialPort::Baud57600 ;                m_baudrate_list.append( item ) ;            }                   ... ...        }4. 定义一个 func 返回选项 Name 的 List        QStringList environment::fun_get_baudrate_str()        {            QStringList i_str_list  ;            i_str_list.clear() ;            for(int i = 0 ; i &lt; m_baudrate_list.size() ; i++ )            {                i_str_list.append( m_baudrate_list.at(i).m_name );            }            return  i_str_list ;        }5. 定义一个 func，通过索引返回 emnu 类型的参数        QSerialPort::BaudRate environment::fun_get_idx_of_enum(int idx)        {            QSerialPort::BaudRate i_baudrate = QSerialPort::Baud115200 ;            if( m_baudrate_list.size() &gt; idx)            {                i_baudrate = m_baudrate_list.at(idx).m_baudrate ;            }            return  i_baudrate ;        }</code></pre><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> QT/设计模式 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> QT/设计模式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++ 多次引用重复定义问题</title>
       <link href="/2020/12/04/c-chong-fu-ding-yi/"/>
       <url>/2020/12/04/c-chong-fu-ding-yi/</url>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MainWindow, 甜点森林">
+    <meta name="keywords" content="甜点森林">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MainWindow | 甜点森林</title>
+    <title>甜点森林</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MainWindow</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -429,25 +429,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/QT/">
-                                <span class="chip bg-color">QT</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/QT/" class="post-category">
-                                QT
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -456,21 +443,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-01
+                    2021-02-09
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-12-01
+                    2021-01-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    217
+                    135
                 </div>
                 
 
@@ -492,54 +479,19 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MainWindow"><a href="#MainWindow" class="headerlink" title="MainWindow"></a>MainWindow</h1><p>含有 QMenuBar, QToolBar 和 QStatusBar的窗口</p>
-<h2 id="QMenuBar"><a href="#QMenuBar" class="headerlink" title="QMenuBar"></a>QMenuBar</h2><pre><code>QMenuBar *pMenuBar = menuBar();</code></pre>
-<h3 id="QMenu"><a href="#QMenu" class="headerlink" title="QMenu"></a>QMenu</h3><pre><code>QMenu *menu = pMenuBar-&gt;addMenu("&amp;File");</code></pre>
-<ul>
-<li><p>当需要在其他地方使用 menu 时, 可以创建一个 _menu 指针等于 menu</p>
-<pre><code>  _menu = menu;</code></pre>
-</li>
-<li><p>QAction</p>
-<pre><code>  QAction *OpenAction = 
-  menu-&gt; addAction("&amp;Open",  // 名字
-                   this, 
-                   &amp; MyMainWindow::sl_open,   //  处理函数 
-                   QKeySequence::Open     //  快捷键 
-                   );</code></pre>
-</li>
-</ul>
-<h2 id="QToolBar"><a href="#QToolBar" class="headerlink" title="QToolBar"></a>QToolBar</h2><pre><code>QToolBar *toolBar = this-&gt;addToolBar("MyToolBar");  
-toolBar-&gt;addAction(OpenAction);
-toolBar-&gt;addAction(SaveAction);
-toolBar-&gt;addAction(ExitAction);</code></pre>
-<h2 id="QStatusBar-layout？"><a href="#QStatusBar-layout？" class="headerlink" title="QStatusBar   //  layout？"></a>QStatusBar   //  layout？</h2><pre><code>QStatusBar * statusBar = this-&gt;statusBar();</code></pre>
-<h2 id="QSystemTrayIcon"><a href="#QSystemTrayIcon" class="headerlink" title="QSystemTrayIcon"></a>QSystemTrayIcon</h2><ul>
-<li><p>系统托盘图标</p>
-<pre><code>  _icon = new QSystemTrayIcon();
-  _icon-&gt;setIcon(QIcon("../favicon.ico"));    
-  _icon-&gt;setToolTip("This is tray icon test");
-  _icon-&gt;show();
-  _icon-&gt;setContextMenu(_menu);   //  点击菜单</code></pre>
-</li>
-<li><p>点击显示隐藏</p>
-<pre><code>  connect(_icon,
-          &amp;QSystemTrayIcon::activated,
-          this,
-          &amp; MyMainWindow::sl_iconevent);
+                <pre><code>ethercat-1.5.2-patch.tar.gz     打过补丁的ethercat包
 
-  void MyMainWindow::sl_iconevent(QSystemTrayIcon::ActivationReason reason)
-  {
-      if(reason == QSystemTrayIcon::Trigger)
-      {
-          if(this-&gt;isHidden())
-              this-&gt;show();
-          else {
-              this-&gt;hide();
-          }
-      }
-  }</code></pre>
-</li>
-</ul>
+linux-4.19.152.tar.gz           普通的linux源代码
+
+linux-4.19.152-patch.tar.gz     打过xenomai补丁的linux源代码    
+
+xenomai-image-headers.tar.gz    xenomai安装镜像以及头文件   
+
+libxenomai.tar.gz               xenomai所需库   
+
+ipipe-core-4.19.152-cip37-x86-15.patch  
+
+cobalt-core-4.19.152-v3.1-rc4.patch  </code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -583,7 +535,7 @@ toolBar-&gt;addAction(ExitAction);</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bySouffle.github.io/2020/12/01/qt-8-mainwindow/">http://bySouffle.github.io/2020/12/01/qt-8-mainwindow/</a>
+                    <a href="http://bySouffle.github.io/2021/02/09/filereadme/">http://bySouffle.github.io/2021/02/09/filereadme/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -620,11 +572,7 @@ toolBar-&gt;addAction(ExitAction);</code></pre>
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/QT/">
-                                    <span class="chip bg-color">QT</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -790,48 +738,43 @@ toolBar-&gt;addAction(ExitAction);</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/02/qt-10-socket/">
+                <a href="/2021/02/09/filereadme/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/1.jpg" class="responsive-img" alt="Socket">
                         
-                        <span class="card-title">Socket</span>
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            QT学习
+                            ethercat-1.5.2-patch.tar.gz     打过补丁的ethercat包
+
+linux-4.19.152.tar.gz           普通的linux源代码
+
+linux-4.19.152-patch.tar.gz
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-09
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/QT/" class="post-category">
-                                    QT
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            bySouffle
                             
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/QT/">
-                        <span class="chip bg-color">QT</span>
-                    </a>
-                    
-                </div>
+
                 
             </div>
         </div>
@@ -842,23 +785,23 @@ toolBar-&gt;addAction(ExitAction);</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/01/qt-9-file/">
+                <a href="/2020/12/25/qt-ldd-pack/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/8.jpg" class="responsive-img" alt="File I/O">
+                        <img src="/medias/banner/1.jpg" class="responsive-img" alt="QT Linux pack">
                         
-                        <span class="card-title">File I/O</span>
+                        <span class="card-title">QT Linux pack</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            QT学习
+                            QT 应用
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-25
                             </span>
                         <span class="publish-author">
                             
