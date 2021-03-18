@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="甜点森林">
+    <meta name="keywords" content="C++ 多线程创建, 甜点森林">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>甜点森林</title>
+    <title>C++ 多线程创建 | 甜点森林</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title"></h1>
+                    <h1 class="description center-align post-title">C++ 多线程创建</h1>
                 </div>
             </div>
         </div>
@@ -429,12 +429,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/C/">
+                                <span class="chip bg-color">C++</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/C/" class="post-category">
+                                C++
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -443,28 +456,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-09
+                    2021-03-16
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-01-05
+                    2021-03-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    135
+                    380
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -479,38 +492,120 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre><code>ethercat-1.5.2-patch.tar.gz     打过补丁的ethercat包
+                <h1 id="C-多线程操作"><a href="#C-多线程操作" class="headerlink" title="C++ 多线程操作"></a>C++ 多线程操作</h1><h2 id="一-函数对象创建线程"><a href="#一-函数对象创建线程" class="headerlink" title="一. 函数对象创建线程"></a>一. 函数对象创建线程</h2><pre><code>#include &lt;iostream&gt;
+#include &lt;pthread.h&gt;
+using namespace std;
 
-linux-4.19.152.tar.gz           普通的linux源代码
 
-linux-4.19.152-patch.tar.gz     打过xenomai补丁的linux源代码    
+void func()
+&#123;
+    cout &lt;&lt; &quot;strat&quot; &lt;&lt;endl;
+    cout &lt;&lt; &quot;end&quot; &lt;&lt;endl;
 
-xenomai-image-headers.tar.gz    xenomai安装镜像以及头文件   
+&#125;
 
-libxenomai.tar.gz               xenomai所需库   
+int main()
+&#123;
+    thread m_thread(func);
+    m_thread.join();
+    cout &lt;&lt; &quot;zzz&quot; &lt;&lt;endl;
+    return 0;
+&#125;</code></pre>
+<h2 id="二-用类对象创建线程"><a href="#二-用类对象创建线程" class="headerlink" title="二. 用类对象创建线程"></a>二. 用类对象创建线程</h2><p>1.</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;pthread.h&gt;
+using namespace std;
 
-ipipe-core-4.19.152-cip37-x86-15.patch  
 
-cobalt-core-4.19.152-v3.1-rc4.patch  </code></pre>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+// 类要变成可调用对象需要重载操作符（）
+
+class T
+&#123;
+    public:
+        void operator()()   //不能带参数，代码从这开始执行
+        &#123;
+        cout&lt;&lt;&quot;start&quot;&lt;&lt;endl;
+        //...
+        cout&lt;&lt;&quot;end&quot;&lt;&lt;endl;
+        &#125;
+&#125;
+
+int main()
+&#123;
+    T t;
+    thread m_thread(t);
+    m_thread.join();
+    cout &lt;&lt; &quot;zzz&quot; &lt;&lt;endl;
+    return 0;
+&#125;</code></pre>
+<p>2.</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;pthread.h&gt;
+
+// 类要变成调用对象需要重载操作符
+class T
+&#123;
+    public:
+        int m;
+        T(int i):m(i)
+        &#123;
+
+        &#125;
+        void operator()()   //不能带参数 代码从这开始
+        &#123;
+            cout &lt;&lt; &quot;start&quot; &lt;&lt; endl;
+            //...
+            cout &lt;&lt; &quot;end&quot; &lt;&lt; endl;
+        &#125;
+
+&#125;;
+
+int main()
+&#123;
+    int m = 6;
+    T t(m);
+    thread m_thread(t);
+    m_thread.join();
+
+    cout &lt;&lt; &quot;zzz&quot; &lt;&lt; endl;
+&#125;</code></pre>
+<h2 id="三-将类中的某个函数作为线程的入口地址"><a href="#三-将类中的某个函数作为线程的入口地址" class="headerlink" title="三. 将类中的某个函数作为线程的入口地址"></a>三. 将类中的某个函数作为线程的入口地址</h2><pre><code>class T
+&#123;
+    public:
+        void GetMsg()
+        &#123;
+
+        &#125;
+
+        void SaveMsg()
+        &#123;
+
+        &#125;
+&#125;
+
+T t;
+// 第一个是取址 第二个是引用
+thread obj1(&amp;T::GetMsg, &amp;t);
+thread obj2(&amp;T::SaveMsg, &amp;t);
+
+obj1.join();
+obj2.join();</code></pre>
+<h2 id="四-lambda-表达式创建线程"><a href="#四-lambda-表达式创建线程" class="headerlink" title="四. lambda 表达式创建线程"></a>四. lambda 表达式创建线程</h2><pre><code>#include&lt;iostream&gt;
+#include&lt;pthread.h&gt;
+using namespace std;
+
+int main()
+&#123;
+    auto m_lambda = []
+    &#123;
+        cout &lt;&lt; &quot;start&quot; &lt;&lt; endl; 
+    &#125;
+    thread m_thread(m_lambda);
+    m_thread.join();
+
+    cout &lt;&lt; &quot;zz&quot; &lt;&lt;endl;
+&#125;</code></pre>
+
             </div>
             <hr/>
 
@@ -535,7 +630,7 @@ cobalt-core-4.19.152-v3.1-rc4.patch  </code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bySouffle.github.io/2021/02/09/filereadme/">http://bySouffle.github.io/2021/02/09/filereadme/</a>
+                    <a href="http://bySouffle.github.io/2021/03/16/c-thread/">http://bySouffle.github.io/2021/03/16/c-thread/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -572,7 +667,11 @@ cobalt-core-4.19.152-v3.1-rc4.patch  </code></pre>
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/C/">
+                                    <span class="chip bg-color">C++</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -738,9 +837,59 @@ cobalt-core-4.19.152-v3.1-rc4.patch  </code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/03/16/c-thread/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/banner/1.jpg" class="responsive-img" alt="C++ 多线程创建">
+                        
+                        <span class="card-title">C++ 多线程创建</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            C++ 基础知识
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category">
+                                    C++
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2021/02/25/linux-serial/">
                     <div class="card-image">
@@ -757,9 +906,9 @@ cobalt-core-4.19.152-v3.1-rc4.patch  </code></pre>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -777,54 +926,6 @@ cobalt-core-4.19.152-v3.1-rc4.patch  </code></pre>
                     
                     <a href="/tags/Linux-Serial/">
                         <span class="chip bg-color">Linux/Serial</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/12/25/qt-ldd-pack/">
-                    <div class="card-image">
-                        
-                        <img src="/medias/banner/1.jpg" class="responsive-img" alt="QT Linux pack">
-                        
-                        <span class="card-title">QT Linux pack</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            QT 应用
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-25
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/QT/" class="post-category">
-                                    QT
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/QT/">
-                        <span class="chip bg-color">QT</span>
                     </a>
                     
                 </div>

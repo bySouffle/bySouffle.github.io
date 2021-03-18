@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>C++ 多线程创建</title>
+      <link href="/2021/03/16/c-thread/"/>
+      <url>/2021/03/16/c-thread/</url>
+      
+        <content type="html"><![CDATA[<h1 id="C-多线程操作"><a href="#C-多线程操作" class="headerlink" title="C++ 多线程操作"></a>C++ 多线程操作</h1><h2 id="一-函数对象创建线程"><a href="#一-函数对象创建线程" class="headerlink" title="一. 函数对象创建线程"></a>一. 函数对象创建线程</h2><pre><code>#include &lt;iostream&gt;#include &lt;pthread.h&gt;using namespace std;void func()&#123;    cout &lt;&lt; &quot;strat&quot; &lt;&lt;endl;    cout &lt;&lt; &quot;end&quot; &lt;&lt;endl;&#125;int main()&#123;    thread m_thread(func);    m_thread.join();    cout &lt;&lt; &quot;zzz&quot; &lt;&lt;endl;    return 0;&#125;</code></pre><h2 id="二-用类对象创建线程"><a href="#二-用类对象创建线程" class="headerlink" title="二. 用类对象创建线程"></a>二. 用类对象创建线程</h2><p>1.</p><pre><code>#include &lt;iostream&gt;#include &lt;pthread.h&gt;using namespace std;// 类要变成可调用对象需要重载操作符（）class T&#123;    public:        void operator()()   //不能带参数，代码从这开始执行        &#123;        cout&lt;&lt;&quot;start&quot;&lt;&lt;endl;        //...        cout&lt;&lt;&quot;end&quot;&lt;&lt;endl;        &#125;&#125;int main()&#123;    T t;    thread m_thread(t);    m_thread.join();    cout &lt;&lt; &quot;zzz&quot; &lt;&lt;endl;    return 0;&#125;</code></pre><p>2.</p><pre><code>#include&lt;iostream&gt;#include&lt;pthread.h&gt;// 类要变成调用对象需要重载操作符class T&#123;    public:        int m;        T(int i):m(i)        &#123;        &#125;        void operator()()   //不能带参数 代码从这开始        &#123;            cout &lt;&lt; &quot;start&quot; &lt;&lt; endl;            //...            cout &lt;&lt; &quot;end&quot; &lt;&lt; endl;        &#125;&#125;;int main()&#123;    int m = 6;    T t(m);    thread m_thread(t);    m_thread.join();    cout &lt;&lt; &quot;zzz&quot; &lt;&lt; endl;&#125;</code></pre><h2 id="三-将类中的某个函数作为线程的入口地址"><a href="#三-将类中的某个函数作为线程的入口地址" class="headerlink" title="三. 将类中的某个函数作为线程的入口地址"></a>三. 将类中的某个函数作为线程的入口地址</h2><pre><code>class T&#123;    public:        void GetMsg()        &#123;        &#125;        void SaveMsg()        &#123;        &#125;&#125;T t;// 第一个是取址 第二个是引用thread obj1(&amp;T::GetMsg, &amp;t);thread obj2(&amp;T::SaveMsg, &amp;t);obj1.join();obj2.join();</code></pre><h2 id="四-lambda-表达式创建线程"><a href="#四-lambda-表达式创建线程" class="headerlink" title="四. lambda 表达式创建线程"></a>四. lambda 表达式创建线程</h2><pre><code>#include&lt;iostream&gt;#include&lt;pthread.h&gt;using namespace std;int main()&#123;    auto m_lambda = []    &#123;        cout &lt;&lt; &quot;start&quot; &lt;&lt; endl;     &#125;    thread m_thread(m_lambda);    m_thread.join();    cout &lt;&lt; &quot;zz&quot; &lt;&lt;endl;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux Serial 配置</title>
+      <link href="/2021/02/25/linux-serial/"/>
+      <url>/2021/02/25/linux-serial/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Linux-串口配置"><a href="#Linux-串口配置" class="headerlink" title="Linux 串口配置"></a>Linux 串口配置</h1><h2 id="1-波特率"><a href="#1-波特率" class="headerlink" title="1. 波特率"></a>1. 波特率</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux/Serial </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux/Serial </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="/2021/02/09/filereadme/"/>
       <url>/2021/02/09/filereadme/</url>
@@ -121,7 +171,7 @@
       <link href="/2020/12/01/qt-8-mainwindow/"/>
       <url>/2020/12/01/qt-8-mainwindow/</url>
       
-        <content type="html"><![CDATA[<h1 id="MainWindow"><a href="#MainWindow" class="headerlink" title="MainWindow"></a>MainWindow</h1><p>含有 QMenuBar, QToolBar 和 QStatusBar的窗口</p><h2 id="QMenuBar"><a href="#QMenuBar" class="headerlink" title="QMenuBar"></a>QMenuBar</h2><pre><code>QMenuBar *pMenuBar = menuBar();</code></pre><h3 id="QMenu"><a href="#QMenu" class="headerlink" title="QMenu"></a>QMenu</h3><pre><code>QMenu *menu = pMenuBar-&gt;addMenu("&amp;File");</code></pre><ul><li><p>当需要在其他地方使用 menu 时, 可以创建一个 _menu 指针等于 menu</p><pre><code>  _menu = menu;</code></pre></li><li><p>QAction</p><pre><code>  QAction *OpenAction =   menu-&gt; addAction("&amp;Open",  // 名字                   this,                    &amp; MyMainWindow::sl_open,   //  处理函数                    QKeySequence::Open     //  快捷键                    );</code></pre></li></ul><h2 id="QToolBar"><a href="#QToolBar" class="headerlink" title="QToolBar"></a>QToolBar</h2><pre><code>QToolBar *toolBar = this-&gt;addToolBar("MyToolBar");  toolBar-&gt;addAction(OpenAction);toolBar-&gt;addAction(SaveAction);toolBar-&gt;addAction(ExitAction);</code></pre><h2 id="QStatusBar-layout？"><a href="#QStatusBar-layout？" class="headerlink" title="QStatusBar   //  layout？"></a>QStatusBar   //  layout？</h2><pre><code>QStatusBar * statusBar = this-&gt;statusBar();</code></pre><h2 id="QSystemTrayIcon"><a href="#QSystemTrayIcon" class="headerlink" title="QSystemTrayIcon"></a>QSystemTrayIcon</h2><ul><li><p>系统托盘图标</p><pre><code>  _icon = new QSystemTrayIcon();  _icon-&gt;setIcon(QIcon("../favicon.ico"));      _icon-&gt;setToolTip("This is tray icon test");  _icon-&gt;show();  _icon-&gt;setContextMenu(_menu);   //  点击菜单</code></pre></li><li><p>点击显示隐藏</p><pre><code>  connect(_icon,          &amp;QSystemTrayIcon::activated,          this,          &amp; MyMainWindow::sl_iconevent);  void MyMainWindow::sl_iconevent(QSystemTrayIcon::ActivationReason reason)  {      if(reason == QSystemTrayIcon::Trigger)      {          if(this-&gt;isHidden())              this-&gt;show();          else {              this-&gt;hide();          }      }  }</code></pre></li></ul><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+        <content type="html"><![CDATA[<h1 id="MainWindow"><a href="#MainWindow" class="headerlink" title="MainWindow"></a>MainWindow</h1><p>含有 QMenuBar, QToolBar 和 QStatusBar的窗口</p><h2 id="QMenuBar"><a href="#QMenuBar" class="headerlink" title="QMenuBar"></a>QMenuBar</h2><pre><code>QMenuBar *pMenuBar = menuBar();</code></pre><h3 id="QMenu"><a href="#QMenu" class="headerlink" title="QMenu"></a>QMenu</h3><pre><code>QMenu *menu = pMenuBar-&gt;addMenu(&quot;&amp;File&quot;);</code></pre><ul><li><p>当需要在其他地方使用 menu 时, 可以创建一个 _menu 指针等于 menu</p><pre><code>  _menu = menu;</code></pre></li><li><p>QAction</p><pre><code>  QAction *OpenAction =   menu-&gt; addAction(&quot;&amp;Open&quot;,  // 名字                   this,                    &amp; MyMainWindow::sl_open,   //  处理函数                    QKeySequence::Open     //  快捷键                    );</code></pre></li></ul><h2 id="QToolBar"><a href="#QToolBar" class="headerlink" title="QToolBar"></a>QToolBar</h2><pre><code>QToolBar *toolBar = this-&gt;addToolBar(&quot;MyToolBar&quot;);  toolBar-&gt;addAction(OpenAction);toolBar-&gt;addAction(SaveAction);toolBar-&gt;addAction(ExitAction);</code></pre><h2 id="QStatusBar-layout？"><a href="#QStatusBar-layout？" class="headerlink" title="QStatusBar   //  layout？"></a>QStatusBar   //  layout？</h2><pre><code>QStatusBar * statusBar = this-&gt;statusBar();</code></pre><h2 id="QSystemTrayIcon"><a href="#QSystemTrayIcon" class="headerlink" title="QSystemTrayIcon"></a>QSystemTrayIcon</h2><ul><li><p>系统托盘图标</p><pre><code>  _icon = new QSystemTrayIcon();  _icon-&gt;setIcon(QIcon(&quot;../favicon.ico&quot;));      _icon-&gt;setToolTip(&quot;This is tray icon test&quot;);  _icon-&gt;show();  _icon-&gt;setContextMenu(_menu);   //  点击菜单</code></pre></li><li><p>点击显示隐藏</p><pre><code>  connect(_icon,          &amp;QSystemTrayIcon::activated,          this,          &amp; MyMainWindow::sl_iconevent);  void MyMainWindow::sl_iconevent(QSystemTrayIcon::ActivationReason reason)  &#123;      if(reason == QSystemTrayIcon::Trigger)      &#123;          if(this-&gt;isHidden())              this-&gt;show();          else &#123;              this-&gt;hide();          &#125;      &#125;  &#125;</code></pre></li></ul>]]></content>
       
       
       <categories>

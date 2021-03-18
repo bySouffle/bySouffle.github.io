@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bysouffle.github.io/"/>
-  <updated>2021-01-05T02:34:17.000Z</updated>
+  <updated>2021-03-17T00:55:17.243Z</updated>
   <id>http://bysouffle.github.io/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++ 多线程创建</title>
+    <link href="http://bysouffle.github.io/2021/03/16/c-thread/"/>
+    <id>http://bysouffle.github.io/2021/03/16/c-thread/</id>
+    <published>2021-03-16T09:17:51.000Z</published>
+    <updated>2021-03-17T00:55:17.243Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;C-多线程操作&quot;&gt;&lt;a href=&quot;#C-多线程操作&quot; class=&quot;headerlink&quot; title=&quot;C++ 多线程操作&quot;&gt;&lt;/a&gt;C++ 多线程操作&lt;/h1&gt;&lt;h2 id=&quot;一-函数对象创建线程&quot;&gt;&lt;a href=&quot;#一-函数对象创建线程&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://bySouffle.github.io/categories/C/"/>
+    
+    
+      <category term="C++" scheme="http://bySouffle.github.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux Serial 配置</title>
+    <link href="http://bysouffle.github.io/2021/02/25/linux-serial/"/>
+    <id>http://bysouffle.github.io/2021/02/25/linux-serial/</id>
+    <published>2021-02-25T01:21:00.000Z</published>
+    <updated>2021-03-18T09:09:41.139Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Linux-串口配置&quot;&gt;&lt;a href=&quot;#Linux-串口配置&quot; class=&quot;headerlink&quot; title=&quot;Linux 串口配置&quot;&gt;&lt;/a&gt;Linux 串口配置&lt;/h1&gt;&lt;h2 id=&quot;1-波特率&quot;&gt;&lt;a href=&quot;#1-波特率&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Linux/Serial" scheme="http://bySouffle.github.io/categories/Linux-Serial/"/>
+    
+    
+      <category term="Linux/Serial" scheme="http://bySouffle.github.io/tags/Linux-Serial/"/>
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -156,7 +210,7 @@ linux-4.19.152-patch.tar.gz
     <link href="http://bysouffle.github.io/2020/12/01/qt-8-mainwindow/"/>
     <id>http://bysouffle.github.io/2020/12/01/qt-8-mainwindow/</id>
     <published>2020-12-01T10:34:00.000Z</published>
-    <updated>2020-12-01T12:06:51.000Z</updated>
+    <updated>2021-03-18T09:06:54.720Z</updated>
     
     <summary type="html">
     
@@ -500,40 +554,6 @@ linux-4.19.152-patch.tar.gz
     </summary>
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>test</title>
-    <link href="http://bysouffle.github.io/2020/08/02/test/"/>
-    <id>http://bysouffle.github.io/2020/08/02/test/</id>
-    <published>2020-08-01T18:03:05.000Z</published>
-    <updated>2020-08-01T18:33:17.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;hr&gt;
-&lt;pre&gt;&lt;code&gt;print(&quot;hello world&quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;hr&gt;
-&lt;script&gt;
-        document.querySelectorAll(&#39;.github-emoji&#39;)
-          .forEach(el =&gt;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="测试" scheme="http://bySouffle.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
-    
-    
-      <category term="Python" scheme="http://bySouffle.github.io/tags/Python/"/>
-    
-      <category term="测试" scheme="http://bySouffle.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
