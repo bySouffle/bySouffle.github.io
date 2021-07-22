@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>TCPIP/UDP</title>
+      <link href="/2022/07/22/tcpip/"/>
+      <url>/2022/07/22/tcpip/</url>
+      
+        <content type="html"><![CDATA[<h1 id="网络协议-UDP"><a href="#网络协议-UDP" class="headerlink" title="网络协议 UDP"></a>网络协议 UDP</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="1-帧格式"><a href="#1-帧格式" class="headerlink" title="1. 帧格式"></a>1. 帧格式</h2><pre><code>            DST_MAC     SRC_MAC     TYPE(IPV4 0x8000)            6字节       6字节        2字节IP_head     IPV4(版本 IP头长 DSF 0x4500)    总长度(IP_head_length(20) + UDP_length)   帧标识(相当于一个标记)    Flag    Offset              2字节                           2字节                                     2字节                   1字节   1字节            TTL     Protocol               [IP头校验和]      Src_IP      Dst_IP                                 1字节   1字节                   2字节            4字节       4字节UDP_        Src_port    Dst_port    UDP_Length  [UDP校验和]     DATA            2字节       2字节        2字节       2字节           ....</code></pre><h2 id="2-部分参数值意义"><a href="#2-部分参数值意义" class="headerlink" title="2. 部分参数值意义"></a>2. 部分参数值意义</h2><pre><code>- IP头长度为20字节- 总长度(IP头中的长度字段)：为UDP部分的长度+IP头长度(不包含MAC地址以及类型的14个字节)- 帧标识(Identification)在经过路由之后报文不会变的字段，为了确保报文的唯一性- UDP中的长度为UDP字段的长度和，从SRC_PROT到最后一个不为padding的字符</code></pre><h2 id="3-校验和"><a href="#3-校验和" class="headerlink" title="3. 校验和"></a>3. 校验和</h2><h3 id="1-IP字段的校验和"><a href="#1-IP字段的校验和" class="headerlink" title="1. IP字段的校验和"></a>1. IP字段的校验和</h3><ul><li><p>每两个字节相加得到一个32bit的数，之后求到的值如果高16位有数，将高16的数辗转加到低16位得到一个16位的值，之后按位求反。代码如下，参数为完整的一个udp数据帧</p><pre><code>  uint16_t ip_calc_ipchecksum(void *pack_info){      int8_t* m_pack_info = (int8_t*)pack_info  ;      //  将校验和置为0      m_pack_info[24] = 0;      m_pack_info[25] = 0;      m_pack_info = &amp;m_pack_info[13];      int index = 0;      int ip_index = 0;      int32_t calc_sum = 0;      int16_t ip_head[10] = {};      int32_t cksum = 0;      while (index != 20)      {          /* code */          ip_head[ip_index] = ( ip_head[ip_index] |( m_pack_info[index] &amp; 0xFF) ) &lt;&lt; 8;          ip_head[ip_index] = ( ip_head[ip_index] | (m_pack_info[index+1] &amp; 0xFF) );          calc_sum += (ip_head[ip_index] &amp; 0xffff );          index += 2;          ip_index += 1;      }      if(index == 20){          calc_sum=(calc_sum&gt;&gt;16)+(calc_sum&amp;0xffff);  //把高位的进位，加到低八位，其实是32位加法          calc_sum+=(calc_sum&gt;&gt;16);  //add carry          cksum = 0xFFFF - calc_sum;          return cksum;      }  }</code></pre></li></ul><pre><code>    0000   28 39 26 d9 cf fb 1c bf c0 db d3 bf 08 00 45 00   (9&amp;...........E.    0010   00 25 ba 78 40 00 40 11 fd d6 c0 a8 00 9e c0 a8   .%.x@.@.........    0020   00 8a da f2 30 39 00 11 77 5e 31 32 33 31 32 33   ....09..w^123123    0030   31 32 33 00 00 00 00 00 00 00 00 00               123.........    公式:         &gt;&gt;&gt; 0x4500 + 0x0025 + 0xba78 + 0x4000 + 0x4011 + 0x0000(校验和置0) + 0xc0a8 + 0x009e + 0xc0a8 + 0x008a        197158        &gt;&gt;&gt; print("0x%x" %197158)        0x30226        &gt;&gt;&gt; print("0x%x" % (0Xffff-0x226-3))        0xfdd6</code></pre><h3 id="2-UDP字段校验和"><a href="#2-UDP字段校验和" class="headerlink" title="2. UDP字段校验和"></a>2. UDP字段校验和</h3><ul><li><p>UDP字段校验和：SRC_IP + DST_IP + UDP协议2字节 + UDP字段中的长度 + UDP数据部分。计算方法与IP校验和相同，每2字节相加，高16位加到低16位得到一个16位数取反</p><pre><code>  公式：      &gt;&gt;&gt; (IP)0xc0a8 + 0x008a + 0xc0a8 + 0x009e + (udp协议0x11前面补0)0x0011 + (UDP数据部分的长度)0x000e + (UDP部分的数据)0x3039 + 0xdaf2 + 0x000e + (校验和置0)0x0000 + 0x3132 + 0x3331 + 0x3233      205926      &gt;&gt;&gt; print("0x%x" % (205926))      0x32466      &gt;&gt;&gt; print("0x%x" % (0Xffff-0x2466-3))      0xdb96</code></pre></li></ul><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络协议/UDP </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络协议/UDP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++ 多线程创建</title>
       <link href="/2021/03/16/c-thread/"/>
       <url>/2021/03/16/c-thread/</url>
@@ -33,7 +58,7 @@
       <link href="/2021/02/25/linux-serial/"/>
       <url>/2021/02/25/linux-serial/</url>
       
-        <content type="html"><![CDATA[<h1 id="Linux-串口配置"><a href="#Linux-串口配置" class="headerlink" title="Linux 串口配置"></a>Linux 串口配置</h1><h2 id="1-波特率"><a href="#1-波特率" class="headerlink" title="1. 波特率"></a>1. 波特率</h2>]]></content>
+        <content type="html"><![CDATA[<h1 id="Linux-串口配置"><a href="#Linux-串口配置" class="headerlink" title="Linux 串口配置"></a>Linux 串口配置</h1><h2 id="1-波特率"><a href="#1-波特率" class="headerlink" title="1. 波特率"></a>1. 波特率</h2><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
       <categories>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="QPainter Pro, 甜点森林">
+    <meta name="keywords" content="TCPIP/UDP, 甜点森林">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>QPainter Pro | 甜点森林</title>
+    <title>TCPIP/UDP | 甜点森林</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">QPainter Pro</h1>
+                    <h1 class="description center-align post-title">TCPIP/UDP</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/QT/">
-                                <span class="chip bg-color">QT</span>
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-UDP/">
+                                <span class="chip bg-color">网络协议/UDP</span>
                             </a>
                         
                     </div>
@@ -443,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/QT/" class="post-category">
-                                QT
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-UDP/" class="post-category">
+                                网络协议/UDP
                             </a>
                         
                     </div>
@@ -456,28 +456,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-28
+                    2022-07-22
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-28
+                    2021-07-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    350
+                    698
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -492,84 +492,81 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="QPainter"><a href="#QPainter" class="headerlink" title="QPainter"></a>QPainter</h1><ul>
-<li>三要素<ul>
-<li>画在什么设备上？    pixmap  </li>
-<li>用什么画在什么上？  painter =&gt; pixmap</li>
-<li>渲染在什么部件上（render）？  QGraphicsView QGraphicsScene</li>
-</ul>
+                <h1 id="网络协议-UDP"><a href="#网络协议-UDP" class="headerlink" title="网络协议 UDP"></a>网络协议 UDP</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="1-帧格式"><a href="#1-帧格式" class="headerlink" title="1. 帧格式"></a>1. 帧格式</h2><pre><code>            DST_MAC     SRC_MAC     TYPE(IPV4 0x8000)
+            6字节       6字节        2字节
+
+IP_head     IPV4(版本 IP头长 DSF 0x4500)    总长度(IP_head_length(20) + UDP_length)   帧标识(相当于一个标记)    Flag    Offset  
+            2字节                           2字节                                     2字节                   1字节   1字节
+
+            TTL     Protocol               [IP头校验和]      Src_IP      Dst_IP                     
+            1字节   1字节                   2字节            4字节       4字节
+
+UDP_        Src_port    Dst_port    UDP_Length  [UDP校验和]     DATA
+            2字节       2字节        2字节       2字节           ....</code></pre>
+<h2 id="2-部分参数值意义"><a href="#2-部分参数值意义" class="headerlink" title="2. 部分参数值意义"></a>2. 部分参数值意义</h2><pre><code>- IP头长度为20字节
+- 总长度(IP头中的长度字段)：为UDP部分的长度+IP头长度(不包含MAC地址以及类型的14个字节)
+- 帧标识(Identification)在经过路由之后报文不会变的字段，为了确保报文的唯一性
+- UDP中的长度为UDP字段的长度和，从SRC_PROT到最后一个不为padding的字符</code></pre>
+<h2 id="3-校验和"><a href="#3-校验和" class="headerlink" title="3. 校验和"></a>3. 校验和</h2><h3 id="1-IP字段的校验和"><a href="#1-IP字段的校验和" class="headerlink" title="1. IP字段的校验和"></a>1. IP字段的校验和</h3><ul>
+<li><p>每两个字节相加得到一个32bit的数，之后求到的值如果高16位有数，将高16的数辗转加到低16位得到一个16位的值，之后按位求反。代码如下，参数为完整的一个udp数据帧</p>
+<pre><code>  uint16_t ip_calc_ipchecksum(void *pack_info){
+      int8_t* m_pack_info = (int8_t*)pack_info  ;
+      //  将校验和置为0
+      m_pack_info[24] = 0;
+      m_pack_info[25] = 0;
+
+      m_pack_info = &amp;m_pack_info[13];
+      int index = 0;
+      int ip_index = 0;
+
+      int32_t calc_sum = 0;
+      int16_t ip_head[10] = {};
+      int32_t cksum = 0;
+
+      while (index != 20)
+      {
+          /* code */
+          ip_head[ip_index] = ( ip_head[ip_index] |( m_pack_info[index] &amp; 0xFF) ) &lt;&lt; 8;
+          ip_head[ip_index] = ( ip_head[ip_index] | (m_pack_info[index+1] &amp; 0xFF) );
+
+          calc_sum += (ip_head[ip_index] &amp; 0xffff );
+
+          index += 2;
+          ip_index += 1;
+      }
+      if(index == 20){
+          calc_sum=(calc_sum&gt;&gt;16)+(calc_sum&amp;0xffff);  //把高位的进位，加到低八位，其实是32位加法
+          calc_sum+=(calc_sum&gt;&gt;16);  //add carry
+
+          cksum = 0xFFFF - calc_sum;
+          return cksum;
+      }
+  }</code></pre>
 </li>
 </ul>
-<h2 id="QGraphicsView"><a href="#QGraphicsView" class="headerlink" title="QGraphicsView"></a>QGraphicsView</h2><ul>
-<li>显示</li>
-</ul>
-<hr>
-<pre><code>_view = new QGraphicsView(this);</code></pre>
-<hr>
-<h2 id="QGraphicsScene"><a href="#QGraphicsScene" class="headerlink" title="QGraphicsScene"></a>QGraphicsScene</h2><ul>
-<li>现场  添加到显示里</li>
-</ul>
-<hr>
-<pre><code>_view-&gt;setScene(_scene = new QGraphicsScene);</code></pre>
-<hr>
-<ul>
-<li>在现场中添加 <strong>item</strong> </li>
-<li>修改 <strong>item</strong> 的样式  </li>
-</ul>
-<hr>
-<pre><code>_scene-&gt;addItem(lineitem = new QGraphicsLineItem(0,0,100,100));
-_scene-&gt;addItem(textitem = new QGraphicsTextItem("ohayo"));
-_scene-&gt;addItem(pixmapItem = new QGraphicsPixmapItem(QPixmap("../xxxx.png")));
+<pre><code>    0000   28 39 26 d9 cf fb 1c bf c0 db d3 bf 08 00 45 00   (9&amp;...........E.
+    0010   00 25 ba 78 40 00 40 11 fd d6 c0 a8 00 9e c0 a8   .%.x@.@.........
+    0020   00 8a da f2 30 39 00 11 77 5e 31 32 33 31 32 33   ....09..w^123123
+    0030   31 32 33 00 00 00 00 00 00 00 00 00               123.........
 
-textitem-&gt;setPos(QPointF(200, 300));
-textitem-&gt;setFont(QFont("aaa",50,20,1));
-
-pixmapItem-&gt;setPos(100,100);</code></pre>
-<hr>
-<h1 id="保存图片"><a href="#保存图片" class="headerlink" title="保存图片"></a>保存图片</h1><ul>
-<li>先渲染图片<ul>
-<li>三要素： 设备 画笔 渲染 ==&gt; 保存</li>
-</ul>
+    公式: 
+        &gt;&gt;&gt; 0x4500 + 0x0025 + 0xba78 + 0x4000 + 0x4011 + 0x0000(校验和置0) + 0xc0a8 + 0x009e + 0xc0a8 + 0x008a
+        197158
+        &gt;&gt;&gt; print("0x%x" %197158)
+        0x30226
+        &gt;&gt;&gt; print("0x%x" % (0Xffff-0x226-3))
+        0xfdd6</code></pre>
+<h3 id="2-UDP字段校验和"><a href="#2-UDP字段校验和" class="headerlink" title="2. UDP字段校验和"></a>2. UDP字段校验和</h3><ul>
+<li><p>UDP字段校验和：SRC_IP + DST_IP + UDP协议2字节 + UDP字段中的长度 + UDP数据部分。计算方法与IP校验和相同，每2字节相加，高16位加到低16位得到一个16位数取反</p>
+<pre><code>  公式：
+      &gt;&gt;&gt; (IP)0xc0a8 + 0x008a + 0xc0a8 + 0x009e + (udp协议0x11前面补0)0x0011 + (UDP数据部分的长度)0x000e + (UDP部分的数据)0x3039 + 0xdaf2 + 0x000e + (校验和置0)0x0000 + 0x3132 + 0x3331 + 0x3233
+      205926
+      &gt;&gt;&gt; print("0x%x" % (205926))
+      0x32466
+      &gt;&gt;&gt; print("0x%x" % (0Xffff-0x2466-3))
+      0xdb96</code></pre>
 </li>
 </ul>
-<hr>
-<p>//        _view-&gt;render()   //重新操作一遍<br>//        _scene-&gt;render()</p>
-<pre><code>    QPixmap pixmap(size()); //  先要有一个画的设备
-    QPainter painter(&amp;pixmap);  //  画的工具
-
-    painter.fillRect(QRect(0,0,size().width(),size().height()),Qt::white);  //  画板背景
-    _scene-&gt;render(&amp;painter);   //  渲染  用什么渲染（画笔） 在什么上渲染（pixmap）
-
-    pixmap.save("../abb.png");</code></pre>
-<hr>
-<h1 id="QGraphicsItemAnimation-动画"><a href="#QGraphicsItemAnimation-动画" class="headerlink" title="QGraphicsItemAnimation 动画"></a>QGraphicsItemAnimation 动画</h1><ul>
-<li>加入 item ==&gt; 设置QTimeline  ==&gt; 循环次数 ==&gt; </li>
-</ul>
-<hr>
-<pre><code>QGraphicsItemAnimation * animation = new QGraphicsItemAnimation;
-
-animation-&gt;setItem(pixmapItem);
-
-QTimeLine* timeline = new QTimeLine(3000);  // ms
-timeline-&gt;setLoopCount(2);
-
-animation-&gt;setTimeLine( timeline );
-animation-&gt;setTranslationAt(1,200,200);
-timeline-&gt;start();</code></pre>
-<hr>
-<h1 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h1><hr>
-<pre><code>timer = new QTimer();
-timer-&gt;setInterval(1000);   // 间隔1s
-// 超时做的事 connect
-connect(timer,
-        &amp;QTimer::timeout,
-        this,
-        &amp;MyWidget::sl_timeout);
-timer-&gt;start();
-
-    //  只触发一次
-timer-&gt;singleShot(1000,this,&amp;MyWidget::sl_timeout);</code></pre>
-<hr>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -613,7 +610,7 @@ timer-&gt;singleShot(1000,this,&amp;MyWidget::sl_timeout);</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bySouffle.github.io/2020/11/28/qt-6-painterpro/">http://bySouffle.github.io/2020/11/28/qt-6-painterpro/</a>
+                    <a href="http://bySouffle.github.io/2022/07/22/tcpip/">http://bySouffle.github.io/2022/07/22/tcpip/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -651,8 +648,8 @@ timer-&gt;singleShot(1000,this,&amp;MyWidget::sl_timeout);</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/QT/">
-                                    <span class="chip bg-color">QT</span>
+                                <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-UDP/">
+                                    <span class="chip bg-color">网络协议/UDP</span>
                                 </a>
                             
                         </div>
@@ -820,45 +817,47 @@ timer-&gt;singleShot(1000,this,&amp;MyWidget::sl_timeout);</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/11/30/qt-7-dialog/">
+                <a href="/2022/07/22/tcpip/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/6.jpg" class="responsive-img" alt="QPainter Pro">
+                        <img src="/medias/banner/1.jpg" class="responsive-img" alt="TCPIP/UDP">
                         
-                        <span class="card-title">QPainter Pro</span>
+                        <span class="card-title">TCPIP/UDP</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            QT学习
+                            网络协议 TCP/IP UDP
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/QT/" class="post-category">
-                                    QT
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-UDP/" class="post-category">
+                                    网络协议/UDP
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/QT/">
-                        <span class="chip bg-color">QT</span>
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-UDP/">
+                        <span class="chip bg-color">网络协议/UDP</span>
                     </a>
                     
                 </div>
@@ -872,30 +871,30 @@ timer-&gt;singleShot(1000,this,&amp;MyWidget::sl_timeout);</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/25/qt-5-xin-hao-cao/">
+                <a href="/2021/03/16/c-thread/">
                     <div class="card-image">
                         
-                        <img src="/medias/banner/5.jpg" class="responsive-img" alt="信号槽">
+                        <img src="/medias/banner/1.jpg" class="responsive-img" alt="C++ 多线程创建">
                         
-                        <span class="card-title">信号槽</span>
+                        <span class="card-title">C++ 多线程创建</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            QT学习
+                            C++ 基础知识
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-16
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/QT/" class="post-category">
-                                    QT
+                            <a href="/categories/C/" class="post-category">
+                                    C++
                                 </a>
                             
                             
@@ -905,8 +904,8 @@ timer-&gt;singleShot(1000,this,&amp;MyWidget::sl_timeout);</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/QT/">
-                        <span class="chip bg-color">QT</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>

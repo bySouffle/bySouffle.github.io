@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bysouffle.github.io/"/>
-  <updated>2021-03-17T00:55:17.243Z</updated>
+  <updated>2021-07-22T06:41:54.993Z</updated>
   <id>http://bysouffle.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>TCPIP/UDP</title>
+    <link href="http://bysouffle.github.io/2022/07/22/tcpip/"/>
+    <id>http://bysouffle.github.io/2022/07/22/tcpip/</id>
+    <published>2022-07-22T03:03:00.000Z</published>
+    <updated>2021-07-22T06:41:54.993Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;网络协议-UDP&quot;&gt;&lt;a href=&quot;#网络协议-UDP&quot; class=&quot;headerlink&quot; title=&quot;网络协议 UDP&quot;&gt;&lt;/a&gt;网络协议 UDP&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="网络协议/UDP" scheme="http://bySouffle.github.io/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-UDP/"/>
+    
+    
+      <category term="网络协议/UDP" scheme="http://bySouffle.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-UDP/"/>
+    
+  </entry>
   
   <entry>
     <title>C++ 多线程创建</title>
@@ -48,7 +75,7 @@
     <link href="http://bysouffle.github.io/2021/02/25/linux-serial/"/>
     <id>http://bysouffle.github.io/2021/02/25/linux-serial/</id>
     <published>2021-02-25T01:21:00.000Z</published>
-    <updated>2021-03-18T09:09:41.139Z</updated>
+    <updated>2021-03-26T09:33:45.058Z</updated>
     
     <summary type="html">
     
@@ -531,29 +558,6 @@ linux-4.19.152-patch.tar.gz
     
     
       <category term="C/C++" scheme="http://bySouffle.github.io/tags/C-C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://bysouffle.github.io/2020/10/24/hello-world/"/>
-    <id>http://bysouffle.github.io/2020/10/24/hello-world/</id>
-    <published>2020-10-24T07:12:18.401Z</published>
-    <updated>2020-08-02T03:43:58.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;
-        
-      
-    
-    </summary>
-    
-    
     
   </entry>
   
